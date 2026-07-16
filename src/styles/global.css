@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "@fontsource-variable/public-sans";
+
+
+@theme {
+  --color-ink: #18181b;
+  --color-primary: #2050D6;
+
+  --font-sans: "Public Sans Variable", ui-sans-serif, system-ui, sans-serif;
+}
