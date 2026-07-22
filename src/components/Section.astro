@@ -1,9 +1,10 @@
 ---
-const { class : className = "" } = Astro.props;
+const { class: className = "" } = Astro.props
 ---
 
 <section class={className}>
-  <div class="mx-auto max-w-7xl px-6 flex flex-col justify-center items-center">
-    <slot />
-  </div>
+    <div
+        class="mx-auto max-w-7xl px-6 flex flex-col justify-center items-center py-7">
+        <slot />
+    </div>
 </section>

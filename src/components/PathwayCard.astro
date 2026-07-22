@@ -1,0 +1,22 @@
+---
+const { title, desc, href, icon = "", badge = "" } = Astro.props
+---
+
+<a
+    href={href}
+    class="group relative flex flex-col rounded-2xl border border-ink/10 bg-blue-100 p-6
+transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+    {
+        badge && (
+            <span class="absolute right-4 top-4 rounded-full bg-sky-soft px-3 py-1 text-xs font-medium text-primary">
+                {badge}
+            </span>
+        )
+    }
+    <div class="mb-4 text-3xl">{icon}</div>
+    <h3 class="text-lg font-semibold text-ink">{title}</h3>
+    <p class="mt-2 flex-1 text-sm text-ink/70">{desc}</p>
+    <span class="mt-4 text-sm font-medium text-primary group-hover:underline">
+        Learn more →
+    </span>
+</a>

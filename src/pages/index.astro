@@ -1,11 +1,94 @@
 ---
-import Section from "../components/Section.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Heading from "../components/Heading.astro";
+import Section from "../components/Section.astro"
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Heading from "../components/Heading.astro"
+import Button from "../components/Button.astro"
+import PathwayCard from "../components/PathwayCard.astro"
+
+const stats = [
+    { value: "9+", label: "Years European experience" },
+    { value: "100%", label: "Transparent process" },
+    { value: "100%", label: "Visa success rate" },
+    { value: "500+", label: "Students & professionals assisted" },
+]
+
+const pathways = [
+    {
+        icon: "🎓",
+        title: "Master's & Bachelor's Admissions",
+        desc: "End-to-end guidance for undergrad and graduate admissions at top global universities.",
+        href: "/study-abroad",
+        badge: "Video coming soon",
+    },
+    {
+        icon: "🧭",
+        title: "Career Mapping & Job Strategy",
+        desc: "Position yourself for the international job market with a tailored career roadmap.",
+        href: "/careers-visas",
+    },
+    {
+        icon: "🔬",
+        title: "PhD Mapping & Strategy",
+        desc: "Find the right supervisor, funding, and programme for your research path.",
+        href: "/phd",
+    },
+    {
+        icon: "🔧",
+        title: "Ausbildung (Vocational Training)",
+        desc: "Paid vocational training placements in Germany with a route to residency.",
+        href: "/ausbildung",
+    },
+    {
+        icon: "🛂",
+        title: "Skilled Worker Visa / Chancenkarte",
+        desc: "Navigate Germany's skilled-worker and opportunity-card visa routes.",
+        href: "/careers-visas",
+    },
+    {
+        icon: "📚",
+        title: "IELTS Academic & General Prep",
+        desc: "Structured prep to hit the band score your application needs.",
+        href: "/consulting/ielts",
+        badge: "Video coming soon",
+    },
+]
 ---
 
 <BaseLayout>
-	<Section class="bg-linear-to-b from-[#d0e7ff] to-white">
-		<Heading class="text-center">Your Gateway to <span class="text-primary italic">Germany,</span> Europe & Beyond</Heading>
-	</Section>
+    <Section class="bg-linear-to-b from-[#d0e7ff] to-white">
+        <Heading class="text-center">
+            Your Gateway to Global Education & Strategic Careers.
+        </Heading>
+        <span
+            class="text-center lg:text-2xl md:text-xl text-lg tracking-tight text-ink lg:w-10/12 mx-auto md:mb-7.5 mb-4">
+            Led by Germany-based experts with nearly 9 years of academic and
+            corporate experience. We bridge the gap between Pakistani talent and
+            top-tier global destinations.
+        </span>
+        <div class="flex">
+            <Button href="/consulting"> Get Started </Button>
+        </div>
+    </Section>
+    <Section class="bg-white">
+        <div class="grid w-full grid-cols-2 gap-8 md:grid-cols-4">
+            {
+                stats.map((s) => (
+                    <div class="text-center">
+                        <div class="text-3xl font-semibold text-primary md:text-4xl">
+                            {s.value}
+                        </div>
+                        <p class="mt-1 text-sm text-ink/70 md:text-base">
+                            {s.label}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+    <Section class="bg-white">
+        <Heading class="text-center">Six pathways. One trusted team.</Heading>
+        <div class="mt-10 grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {pathways.map((p) => <PathwayCard {...p} />)}
+        </div>
+    </Section>
 </BaseLayout>

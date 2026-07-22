@@ -1,0 +1,38 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+const variants = {
+    primary:
+        "bg-primary bg-linear-to-b from-white/20 to-transparent hover:bg-primary2 text-white",
+    secondary:
+        "border border-ink/20 bg-transparent text-ink hover:border-ink/40",
+}
+
+type Variant = keyof typeof variants
+
+type ButtonOrLinkProps = (HTMLAttributes<"a"> & HTMLAttributes<"button">) & {
+    href?: string
+    variant?: Variant
+    class?: string
+}
+
+const {
+    href = "",
+    variant = "primary",
+    class: className = "",
+    ...rest
+} = Astro.props as ButtonOrLinkProps
+
+const Tag = href ? "a" : "button"
+
+const base =
+    "inline-flex items-center justify-center gap-2 rounded-full px-10 py-3.5 md:text-lg font-medium text-center transition-transform hover:scale-95"
+---
+
+<Tag
+    class:list={[base, variants[variant], className]}
+    href={href || undefined}
+    {...rest}>
+    <slot name="icon" />
+    <slot />
+</Tag>
