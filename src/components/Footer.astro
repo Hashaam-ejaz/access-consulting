@@ -1,9 +1,139 @@
 ---
-import Section from "./Section.astro";
+import { Image } from "astro:assets"
 
+const linkGroups = [
+    {
+        title: "Services",
+        links: [
+            { name: "Study Abroad", href: "/study-abroad" },
+            { name: "PhD Mapping & Strategy", href: "/phd" },
+            { name: "Ausbildung", href: "/ausbildung" },
+            { name: "Careers & Work Visas", href: "/careers-visas" },
+        ],
+    },
+    {
+        title: "Consulting",
+        links: [
+            { name: "Consulting", href: "/consulting" },
+            { name: "IELTS Preparation", href: "/consulting/ielts" },
+            { name: "Book a Consultation", href: "/consultancy" },
+        ],
+    },
+    {
+        title: "Company",
+        links: [
+            { name: "Proven Results", href: "/proven-results" },
+            { name: "Blog", href: "/blog" },
+            { name: "Contact", href: "/contact" },
+        ],
+    },
+]
 
+const offices = [
+    { city: "Frankfurt, Germany", address: "Bromstraße, Frankfurt" },
+    { city: "Lahore, Pakistan", address: "975-H, Johar Town" },
+]
+
+const year = new Date().getFullYear()
 ---
 
-<Section>
-    Footer
-</Section>
+<footer class="bg-ink text-white">
+    <div class="mx-auto max-w-7xl px-6 py-16">
+        <div class="flex flex-col gap-12 lg:flex-row lg:justify-between">
+            <div class="lg:max-w-sm">
+                <a href="/" class="inline-flex items-center gap-3">
+                    <Image
+                        src="/logo.png"
+                        alt="Access Consulting"
+                        width={160}
+                        height={48}
+                        class="h-11 w-auto brightness-0 invert"
+                    />
+                    <span class="text-xl font-semibold">Access Consulting</span>
+                </a>
+
+                <p class="mt-5 text-sm leading-relaxed text-white/60">
+                    Premium international education and immigration consultancy.
+                    Offices in Germany and Pakistan.
+                </p>
+
+                <ul class="mt-6 space-y-2.5 text-sm">
+                    <li>
+                        <a
+                            href="tel:+4915772312591"
+                            class="text-white/70 transition-colors hover:text-white">
+                            +49 157 7231 2591 <span class="text-white/40">
+                                (DE)
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="tel:+923390123777"
+                            class="text-white/70 transition-colors hover:text-white">
+                            0339-0123777 <span class="text-white/40">(PK)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="mailto:accessventure130@gmail.com"
+                            class="text-white/70 transition-colors hover:text-white">
+                            accessventure130@gmail.com
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- link columns -->
+            <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:gap-14">
+                {
+                    linkGroups.map((group) => (
+                        <div>
+                            <h3 class="text-sm font-semibold uppercase tracking-wider text-white/40">
+                                {group.title}
+                            </h3>
+                            <ul class="mt-4 space-y-3">
+                                {group.links.map((link) => (
+                                    <li>
+                                        <a
+                                            href={link.href}
+                                            class="text-sm text-white/70 transition-colors hover:text-white">
+                                            {link.name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- offices -->
+        <div class="mt-14 border-t border-white/10 pt-10">
+            <h3
+                class="text-sm font-semibold uppercase tracking-wider text-white/40">
+                Our Offices
+            </h3>
+            <div class="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {
+                    offices.map((office) => (
+                        <div>
+                            <div class="text-sm font-medium text-white">
+                                {office.city}
+                            </div>
+                            <div class="mt-1 text-sm text-white/60">
+                                {office.address}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- bottom bar -->
+        <div class="mt-12 border-t border-white/10 pt-8 text-sm text-white/50">
+            © {year} Access Consulting. All rights reserved.
+        </div>
+    </div>
+</footer>

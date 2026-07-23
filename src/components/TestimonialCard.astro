@@ -1,0 +1,20 @@
+---
+const { quote, name, detail = "" } = Astro.props
+---
+
+<figure
+    class="flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
+    <svg
+        class="mb-4 h-6 w-6 text-primary/30"
+        viewBox="0 0 24 24"
+        fill="currentColor">
+        <path
+            d="M9 7H5a2 2 0 00-2 2v4a2 2 0 002 2h2v2a2 2 0 01-2 2H4v2h1a4 4 0 004-4V7zm11 0h-4a2 2 0 00-2 2v4a2 2 0 002 2h2v2a2 2 0 01-2 2h-1v2h1a4 4 0 004-4V7z">
+        </path>
+    </svg>
+    <blockquote class="flex-1 text-ink/80">{quote}</blockquote>
+    <figcaption class="mt-5 border-t border-ink/10 pt-4">
+        <div class="font-semibold text-ink">{name}</div>
+        {detail && <div class="text-sm text-ink/60">{detail}</div>}
+    </figcaption>
+</figure>

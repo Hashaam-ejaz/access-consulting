@@ -5,6 +5,7 @@ import Heading from "../components/Heading.astro"
 import Button from "../components/Button.astro"
 import PathwayCard from "../components/PathwayCard.astro"
 import LogoGrid from "../components/LogoGrid.astro"
+import TestimonialCard from "../components/TestimonialCard.astro"
 
 const stats = [
     { value: "9+", label: "Years European experience" },
@@ -71,6 +72,31 @@ const networkLogos = [
     { name: "Wermuth Asset Management", src: "/logos/wermuth.svg" },
     { name: "United Nations", src: "/logos/un.png" },
     { name: "Government of Pakistan", src: "/logos/gop.svg" },
+    { name: "Cadet College Jhang", src: "/logos/ccj.png" },
+    {
+        name: "Cadet College Malir Cantt",
+        src: "/logos/ccmk.png",
+    },
+    { name: "HTW", src: "/logos/htw.svg" },
+]
+
+const testimonials = [
+    {
+        quote: "AA! Got some amazing news today. Alhamdulillah, I've been selected for an internship. Thank you for your support.",
+        name: "Alia K.",
+    },
+    {
+        quote: "Visa recieved today alhamdolillah - JazakAllah for everything.",
+        name: "Saima K.",
+    },
+    {
+        quote: "Assalamualaikum! Alhamdulillah I got selected for a werkstudent position.",
+        name: "Talal K.",
+    },
+    {
+        quote: "Visa recieved; thanks so much. JazakAllah for your support throughout the process.",
+        name: "Bilal M.",
+    },
 ]
 ---
 
@@ -89,6 +115,7 @@ const networkLogos = [
             <Button href="/consulting"> Get Started </Button>
         </div>
     </Section>
+
     <Section class="bg-white">
         <div class="grid w-full grid-cols-2 gap-8 md:grid-cols-4">
             {
@@ -105,12 +132,14 @@ const networkLogos = [
             }
         </div>
     </Section>
+
     <Section class="bg-white">
         <Heading class="text-center">Six pathways. One trusted team.</Heading>
         <div class="mt-10 grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
             {pathways.map((p) => <PathwayCard {...p} />)}
         </div>
     </Section>
+
     <Section class="bg-white">
         <Heading class="text-center"
             >Our Network & Corporate Foundations</Heading
@@ -120,5 +149,44 @@ const networkLogos = [
             studied and worked with.
         </p>
         <LogoGrid logos={networkLogos} />
+    </Section>
+
+    <Section class="bg-ink text-white">
+        <div class="max-w-3xl text-center">
+            <span
+                class="text-sm font-medium uppercase tracking-widest text-white/50">
+                Giving back
+            </span>
+            <h2 class="mt-4 text-2xl font-semibold md:text-3xl">
+                A commitment to building the future.
+            </h2>
+            <p class="mt-5 text-lg leading-relaxed text-white/70">
+                A dedicated percentage of all Access Consulting revenue directly
+                funds &nbsp;
+                <a
+                    href="https://hamaragharcenter.com/"
+                    target="_blank"
+                    class="font-medium text-white">
+                    Hamara Ghar Welfare Trust
+                </a>, supporting the education and shelter of orphan girls in
+                Islamabad.
+            </p>
+        </div>
+    </Section>
+
+    <Section class="bg-blue-100">
+        <Heading class="text-center">What our students say</Heading>
+        <div class="mt-10 flex w-full flex-wrap justify-center gap-6">
+            {
+                testimonials.map((t) => (
+                    <div class="basis-full md:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]">
+                        <TestimonialCard {...t} />
+                    </div>
+                ))
+            }
+        </div>
+        <Button href="/proven-results" variant="secondary" class="mt-10">
+            View all proven results →
+        </Button>
     </Section>
 </BaseLayout>
