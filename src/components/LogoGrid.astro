@@ -1,0 +1,29 @@
+---
+// src/components/LogoGrid.astro
+interface Props {
+    logos: Array<{
+        src: string
+        name: string
+        class?: string
+    }>
+}
+const { logos = [] } = Astro.props as Props
+---
+
+<div
+    class="grid w-full grid-cols-2 items-center gap-x-8 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+    {
+        logos.map((logo) => (
+            <div class="flex items-center justify-center">
+                <img
+                    src={logo.src}
+                    alt={logo.name}
+                    class:list={[
+                        "h-14 w-auto max-w-[180px] object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-16",
+                        logo.class,
+                    ]}
+                />
+            </div>
+        ))
+    }
+</div>

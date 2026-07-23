@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro"
 import Heading from "../components/Heading.astro"
 import Button from "../components/Button.astro"
 import PathwayCard from "../components/PathwayCard.astro"
+import LogoGrid from "../components/LogoGrid.astro"
 
 const stats = [
     { value: "9+", label: "Years European experience" },
@@ -52,6 +53,25 @@ const pathways = [
         badge: "Video coming soon",
     },
 ]
+
+const networkLogos = [
+    { name: "LUMS", src: "/logos/lums.png" },
+    {
+        name: "constructor University",
+        src: "/logos/constructor.svg",
+        class: "invert",
+    },
+    { name: "Central European University", src: "/logos/ceu.svg" },
+    { name: "NUST", src: "/logos/ nust.png" },
+    { name: "Jacobs University Bremen", src: "/logos/jacobs.png" },
+    { name: "Max Planck Institute", src: "/logos/max-planck.png" },
+    { name: "Deloitte", src: "/logos/deloitte.png" },
+    { name: "BlackRock", src: "/logos/blackrock.png" },
+    { name: "Moonfare", src: "/logos/moonfare.svg" },
+    { name: "Wermuth Asset Management", src: "/logos/wermuth.svg" },
+    { name: "United Nations", src: "/logos/un.png" },
+    { name: "Government of Pakistan", src: "/logos/gop.svg" },
+]
 ---
 
 <BaseLayout>
@@ -90,5 +110,15 @@ const pathways = [
         <div class="mt-10 grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
             {pathways.map((p) => <PathwayCard {...p} />)}
         </div>
+    </Section>
+    <Section class="bg-white">
+        <Heading class="text-center"
+            >Our Network & Corporate Foundations</Heading
+        >
+        <p class="mb-10 max-w-2xl text-center text-ink/70">
+            The academic and professional institutions our consultants have
+            studied and worked with.
+        </p>
+        <LogoGrid logos={networkLogos} />
     </Section>
 </BaseLayout>
