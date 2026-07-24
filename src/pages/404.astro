@@ -1,0 +1,59 @@
+---
+// src/pages/404.astro
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Section from "../components/Section.astro"
+import Button from "../components/Button.astro"
+
+const suggestions = [
+    { name: "Study Abroad", href: "/study-abroad" },
+    { name: "Careers & Work Visas", href: "/careers-visas" },
+    { name: "Proven Results", href: "/proven-results" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
+]
+---
+
+<BaseLayout
+    title="Page not found — Access Consulting"
+    description="The page you're looking for doesn't exist.">
+    <Section class="bg-linear-to-b from-[#d0e7ff] to-white">
+        <div class="py-16 text-center md:py-24">
+            <div class="text-6xl font-semibold text-primary md:text-8xl">
+                404
+            </div>
+
+            <h1
+                class="mt-6 text-3xl font-semibold tracking-tight text-ink md:text-5xl">
+                This page has taken a different route.
+            </h1>
+
+            <p class="mx-auto mt-5 max-w-xl text-lg text-ink/70">
+                The page you're looking for doesn't exist or has moved. Let's
+                get you back on track.
+            </p>
+
+            <div class="mt-9 flex flex-wrap justify-center gap-4">
+                <Button href="/">Back to home</Button>
+                <Button href="/contact" variant="secondary">Contact us</Button>
+            </div>
+
+            <div class="mt-14">
+                <p
+                    class="text-sm font-medium uppercase tracking-wider text-ink/40">
+                    Popular pages
+                </p>
+                <div class="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-3">
+                    {
+                        suggestions.map((s) => (
+                            <a
+                                href={s.href}
+                                class="text-sm font-medium text-primary hover:underline">
+                                {s.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </Section>
+</BaseLayout>

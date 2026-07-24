@@ -6,6 +6,7 @@ import Button from "../components/Button.astro"
 import PathwayCard from "../components/PathwayCard.astro"
 import LogoGrid from "../components/LogoGrid.astro"
 import TestimonialCard from "../components/TestimonialCard.astro"
+import TeamCard from "../components/TeamCard.astro"
 
 const stats = [
     { value: "9+", label: "Years European experience" },
@@ -98,9 +99,61 @@ const testimonials = [
         name: "Bilal M.",
     },
 ]
+
+const founderPoints = [
+    "Nearly 9 years of academic and corporate experience across Europe",
+    "German nationals of Pakistani origin — we've made this journey ourselves",
+    "Direct experience with admissions, work visas, and settling abroad",
+]
+
+const team = [
+    // {
+    //     name: "Harris Azhar",
+    //     role: "Founder",
+    //     image: "/team/harris.png",
+    //     linkedin: "",
+    // },
+    {
+        name: "Azfar Waseem",
+        role: "Operations Partner — Islamabad",
+        image: "/team/azfar.png",
+        linkedin: "",
+    },
+    {
+        name: "Usman Hayat",
+        role: "Senior Advisor Admissions - North America",
+        image: "/team/usman.png",
+        linkedin: "",
+    },
+    // {
+    //     name: "Osama Iqbal",
+    //     role: "Senior Advisor — PhD & Ausbildung",
+    //     image: "/team/osama.jpg",
+    //     linkedin: "",
+    // },
+    {
+        name: "Reja Rahmatullah",
+        role: "Senior Advisor — Careers",
+        image: "/team/reja.png",
+        linkedin: "",
+    },
+    {
+        name: "Danish Obaid",
+        role: "Senior Advisor Admissions - Australia",
+        image: "/team/danish.png",
+        linkedin: "",
+    },
+    // {
+    //     name: "Sabih",
+    //     role: "Marketing Strategist",
+    //     image: "/team/sabih.jpg",
+    //     linkedin: "",
+    // },
+]
 ---
 
 <BaseLayout>
+    <!-- Hero Section -->
     <Section class="bg-linear-to-b from-[#d0e7ff] to-white">
         <Heading class="text-center">
             Your Gateway to Global Education & Strategic Careers.
@@ -116,6 +169,7 @@ const testimonials = [
         </div>
     </Section>
 
+    <!-- Stats Bar -->
     <Section class="bg-white">
         <div class="grid w-full grid-cols-2 gap-8 md:grid-cols-4">
             {
@@ -133,6 +187,82 @@ const testimonials = [
         </div>
     </Section>
 
+    <!-- Harris Azhar -->
+    <Section class="bg-white">
+        <div class="grid w-full items-center gap-12 lg:grid-cols-2">
+            <!-- text -->
+            <div>
+                <span
+                    class="text-sm font-medium uppercase tracking-widest text-primary">
+                    Who we are
+                </span>
+                <h2
+                    class="mt-4 text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+                    We've walked the path we guide you through.
+                </h2>
+                <p class="mt-5 text-lg leading-relaxed text-ink/70">
+                    Access Consulting was founded by Harris Azhar, a German
+                    national of Pakistani origin who navigated the same
+                    admissions, visa, and career decisions our clients face
+                    today. That lived experience — combined with nearly a decade
+                    in European academia and industry — is what separates
+                    genuine guidance from generic advice.
+                </p>
+
+                <ul class="mt-7 space-y-3">
+                    {
+                        founderPoints.map((point) => (
+                            <li class="flex gap-3 text-ink/80">
+                                <svg
+                                    class="mt-1 h-5 w-5 shrink-0 text-primary"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.7-9.7a1 1 0 00-1.4-1.4L9 10.2 7.7 8.9a1 1 0 00-1.4 1.4l2 2a1 1 0 001.4 0l4-4z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                <span>{point}</span>
+                            </li>
+                        ))
+                    }
+                </ul>
+
+                <div class="mt-9 flex flex-wrap gap-4">
+                    <Button href="/about">Meet the team</Button>
+                    <Button href="/consultancy" variant="secondary"
+                        >Book a free call</Button
+                    >
+                </div>
+            </div>
+
+            <!-- founder video -->
+            <div class="relative overflow-hidden rounded-3xl bg-sky-soft">
+                <!-- <video
+                    class="aspect-4/5 w-full object-cover"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    poster="/team/harris-poster.jpg">
+                    <source src="/video/harris-intro.mp4" type="video/mp4" />
+                </video> -->
+                <img
+                    src="/team/harris.png"
+                    alt="Harris Azhar, Founder"
+                    class="aspect-4/5 w-full object-cover"
+                />
+                <div
+                    class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent p-6">
+                    <div class="font-semibold text-white">Harris Azhar</div>
+                    <div class="text-sm text-white/70">Founder</div>
+                </div>
+            </div>
+        </div>
+    </Section>
+
+    <!-- Pathways -->
     <Section class="bg-white">
         <Heading class="text-center">Six pathways. One trusted team.</Heading>
         <div class="mt-10 grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -140,6 +270,7 @@ const testimonials = [
         </div>
     </Section>
 
+    <!-- Network & Corporate Foundations -->
     <Section class="bg-white">
         <Heading class="text-center"
             >Our Network & Corporate Foundations</Heading
@@ -151,6 +282,43 @@ const testimonials = [
         <LogoGrid logos={networkLogos} />
     </Section>
 
+    <!-- Team -->
+    <Section class="bg-blue-100">
+        <Heading class="text-center">Real people. Real experience.</Heading>
+        <p class="mx-auto mb-12 max-w-2xl text-center text-ink/70">
+            A team spread across Germany, Pakistan, and North America — each
+            advising in the areas they've lived through themselves.
+        </p>
+
+        <div class="flex w-full flex-wrap justify-center gap-8">
+            {
+                team.map((member) => (
+                    <div class="basis-[calc(50%-1rem)] sm:basis-[calc(33.333%-1.334rem)] lg:basis-[calc(25%-1.5rem)]">
+                        <TeamCard {...member} />
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+
+    <!-- Testimonials -->
+    <Section class="bg-blue-100">
+        <Heading class="text-center">What our students say</Heading>
+        <div class="mt-10 flex w-full flex-wrap justify-center gap-6">
+            {
+                testimonials.map((t) => (
+                    <div class="basis-full md:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]">
+                        <TestimonialCard {...t} />
+                    </div>
+                ))
+            }
+        </div>
+        <Button href="/proven-results" variant="secondary" class="mt-10">
+            View all proven results →
+        </Button>
+    </Section>
+
+    <!-- Giving Back -->
     <Section class="bg-ink text-white">
         <div class="max-w-3xl text-center">
             <span
@@ -172,21 +340,5 @@ const testimonials = [
                 Islamabad.
             </p>
         </div>
-    </Section>
-
-    <Section class="bg-blue-100">
-        <Heading class="text-center">What our students say</Heading>
-        <div class="mt-10 flex w-full flex-wrap justify-center gap-6">
-            {
-                testimonials.map((t) => (
-                    <div class="basis-full md:basis-[calc(50%-0.75rem)] lg:basis-[calc(33.333%-1rem)]">
-                        <TestimonialCard {...t} />
-                    </div>
-                ))
-            }
-        </div>
-        <Button href="/proven-results" variant="secondary" class="mt-10">
-            View all proven results →
-        </Button>
     </Section>
 </BaseLayout>
