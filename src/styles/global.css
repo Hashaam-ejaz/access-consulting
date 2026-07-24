@@ -8,3 +8,6 @@
 
   --font-sans: "Public Sans Variable", ui-sans-serif, system-ui, sans-serif;
 }
+
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 6rem; }

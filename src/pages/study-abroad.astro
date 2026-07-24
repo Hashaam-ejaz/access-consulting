@@ -1,0 +1,238 @@
+---
+// src/pages/study-abroad.astro
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Section from "../components/Section.astro"
+import Heading from "../components/Heading.astro"
+import Button from "../components/Button.astro"
+import InfoCard from "../components/InfoCard.astro"
+import StepCard from "../components/StepCard.astro"
+
+const lastVerified = "July 2026" // update whenever figures are re-checked
+
+const advantages = [
+    {
+        icon: "🏛️",
+        title: "Tuition-free public universities",
+        desc: "Most German public universities charge no tuition fees — only a modest semester contribution.",
+    },
+    {
+        icon: "💼",
+        title: "18-month post-study work visa",
+        desc: "Graduates get 18 months to find employment matching their qualification.",
+    },
+    {
+        icon: "🛂",
+        title: "Clear PR timeline",
+        desc: "A structured route from student status to permanent residency for those who stay and work.",
+    },
+    {
+        icon: "🌍",
+        title: "Globally ranked degrees",
+        desc: "German qualifications are recognised and respected across the EU and beyond.",
+    },
+]
+
+const roadmap = [
+    {
+        step: 1,
+        title: "Intake planning",
+        desc: "Winter and summer intake windows have different deadlines and programme availability. We map your timeline backwards from the intake you're targeting.",
+    },
+    {
+        step: 2,
+        title: "ECTS credit mapping",
+        desc: "Your Pakistani degree is assessed against the European credit system to confirm eligibility for your target programmes.",
+    },
+    {
+        step: 3,
+        title: "VPD via uni-assist",
+        desc: "Preliminary documentation review through uni-assist, including the VPD where your target university requires it.",
+    },
+    {
+        step: 4,
+        title: "Application assembly",
+        desc: "Programme shortlisting, document preparation, and submission against each university's specific requirements.",
+    },
+]
+
+const visaSteps = [
+    {
+        step: 1,
+        title: "Admission letter",
+        desc: "Confirmed offer from your German university.",
+    },
+    {
+        step: 2,
+        title: "Financial proof",
+        desc: "Blocked account confirmation or equivalent proof of funds.",
+    },
+    {
+        step: 3,
+        title: "Health insurance",
+        desc: "Valid coverage confirmation accepted by the embassy.",
+    },
+    {
+        step: 4,
+        title: "Motivation letter & documents",
+        desc: "Complete file preparation for the German Embassy in Islamabad or Consulate in Karachi.",
+    },
+    {
+        step: 5,
+        title: "Appointment & interview",
+        desc: "Booking, preparation, and submission support through to decision.",
+    },
+]
+
+const markets = [
+    {
+        id: "europe",
+        icon: "🇪🇺",
+        title: "Wider Europe",
+        desc: "Pathways into Italy, France, and Austria — including regional scholarship schemes that significantly reduce cost of study.",
+        meta: "Italy · France · Austria",
+    },
+    {
+        id: "north-america",
+        icon: "🇨🇦",
+        title: "North America",
+        desc: "Intake guidelines and application strategy for the USA and Canada, with advisory from our North America partner.",
+        meta: "Advised by Usman Hayat",
+    },
+    {
+        id: "australia",
+        icon: "🇦🇺",
+        title: "Australia",
+        desc: "Subclass 500 student visas and regional post-study work pathways, including regional incentives.",
+        meta: "Advised by Danish Obaid",
+    },
+]
+---
+
+<BaseLayout
+    title="Study Abroad — Access Consulting"
+    description="World-class education and tailored admissions strategies for Germany, Europe, North America, and Australia.">
+    <!-- hero -->
+    <Section class="bg-linear-to-b from-[#d0e7ff] to-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >World-Class Education. Tailored Admissions Strategies.</Heading
+        >
+        <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
+            From tuition-free German public universities to Australian
+            post-study pathways — we map the route that fits your profile, not a
+            generic checklist.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <Button href="/consulting">Get your profile evaluated</Button>
+            <Button href="#germany" variant="secondary"
+                >Explore Germany pathways</Button
+            >
+        </div>
+    </Section>
+
+    <!-- Germany: advantage -->
+    <Section id="germany" class="bg-white">
+        <span
+            class="text-sm font-medium uppercase tracking-widest text-primary">
+            Flagship focus
+        </span>
+        <Heading class="mt-3 text-center md:text-4xl lg:text-5xl"
+            >The German Advantage</Heading
+        >
+        <div class="mt-10 grid w-full gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {advantages.map((a) => <InfoCard {...a} />)}
+        </div>
+    </Section>
+
+    <!-- Germany: roadmap -->
+    <Section class="bg-sky-soft">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Comprehensive Admissions Roadmap</Heading
+        >
+        <div class="mt-10 w-full max-w-2xl">
+            {roadmap.map((s) => <StepCard {...s} />)}
+        </div>
+    </Section>
+
+    <!-- Germany: financial framework -->
+    <Section class="bg-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Financial Framework</Heading
+        >
+        <p class="mx-auto mb-10 max-w-2xl text-center text-ink/70">
+            The three financial requirements every German student visa
+            application rests on.
+        </p>
+
+        <div class="grid w-full gap-6 lg:grid-cols-3">
+            <InfoCard
+                title="Blocked account (Sperrkonto)"
+                desc="[CLIENT TO CONFIRM: current minimum deposit for 2026, accepted providers, and how the monthly withdrawal limit works.]"
+            />
+            <InfoCard
+                title="Health insurance"
+                desc="[CLIENT TO CONFIRM: public options such as TK and AOK versus private cover like Mawista — who qualifies for which, and what the embassy accepts.]"
+            />
+            <InfoCard
+                title="Student work rights"
+                desc="[CLIENT TO CONFIRM: current permitted working days per year and what counts as a full versus half day.]"
+            />
+        </div>
+
+        <p class="mt-8 text-center text-sm text-ink/50">
+            Figures last verified {lastVerified}. Requirements are set by German
+            authorities and can change — we confirm current rules for every
+            client individually.
+        </p>
+    </Section>
+
+    <!-- Germany: visa mechanics -->
+    <Section class="bg-sky-soft">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Visa Processing Mechanics</Heading
+        >
+        <p class="mx-auto mb-10 max-w-2xl text-center text-ink/70">
+            Your documentation path through the German Embassy in Islamabad or
+            the Consulate in Karachi.
+        </p>
+        <div class="w-full max-w-2xl">
+            {visaSteps.map((s) => <StepCard {...s} />)}
+        </div>
+        <Button href="/consulting" class="mt-6"
+            >Schedule a Germany-specific evaluation</Button
+        >
+    </Section>
+
+    <!-- secondary markets -->
+    <Section class="bg-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Beyond Germany</Heading
+        >
+        <p class="mx-auto mb-10 max-w-2xl text-center text-ink/70">
+            Advisors with lived experience in each destination — not a
+            one-size-fits-all playbook.
+        </p>
+        <div class="grid w-full gap-6 lg:grid-cols-3">
+            {
+                markets.map((m) => (
+                    <div id={m.id}>
+                        <InfoCard {...m} />
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+
+    <!-- closing CTA -->
+    <Section class="bg-ink text-white">
+        <div class="max-w-2xl text-center">
+            <h2 class="text-3xl font-semibold md:text-4xl">
+                Ready to map your international timeline?
+            </h2>
+            <p class="mt-4 text-lg text-white/70">
+                Share your profile and we'll come back with the pathways that
+                actually fit it.
+            </p>
+            <Button href="/consulting" class="mt-8">Get started</Button>
+        </div>
+    </Section>
+</BaseLayout>
