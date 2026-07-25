@@ -1,0 +1,339 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Section from "../components/Section.astro"
+import Heading from "../components/Heading.astro"
+import Button from "../components/Button.astro"
+import InfoCard from "../components/InfoCard.astro"
+import StepCard from "../components/StepCard.astro"
+import FactCard from "../components/FactCard.astro"
+import PointsRow from "../components/PointsRow.astro"
+
+const lastVerified = "July 2026"
+
+const pointsMatrix = [
+    { criterion: "Partial recognition of qualification", points: "4 pts" },
+    {
+        criterion: "Professional experience: 5+ years (last 7)",
+        points: "3 pts",
+    },
+    { criterion: "German language at B2 or higher", points: "3 pts" },
+    {
+        criterion: "Professional experience: 2+ years (last 5)",
+        points: "2 pts",
+    },
+    { criterion: "German language at B1", points: "2 pts" },
+    { criterion: "Under 35 years of age", points: "2 pts" },
+    { criterion: "Aged 35-40", points: "1 pt" },
+    { criterion: "Shortage occupation (Engpassberuf)", points: "1 pt" },
+    { criterion: "Prior stay in Germany (6+ months)", points: "1 pt" },
+    { criterion: "Spouse/partner also eligible", points: "1 pt" },
+]
+
+const chancenkarteSupport = [
+    {
+        step: 1,
+        title: "ZAB statement of comparability",
+        desc: "We prepare and submit your degree for assessment through the ZAB so your qualification is formally recognised or rated in the Anabin database.",
+    },
+    {
+        step: 2,
+        title: "Points assessment",
+        desc: "We calculate your realistic points total across language, experience, age, and other criteria — and identify the fastest ways to reach the six-point threshold.",
+    },
+    {
+        step: 3,
+        title: "Job-search preparation",
+        desc: "EU-standard CV, targeted applications, and positioning so your 12 months on the card are spent efficiently.",
+    },
+    {
+        step: 4,
+        title: "Embassy file assembly",
+        desc: "Complete documentation package for submission, including financial proof and language certificates.",
+    },
+]
+
+const careerServices = [
+    {
+        icon: "📄",
+        title: "Europass / German CV conversion",
+        desc: "We translate Pakistani resumes into the tabular German Lebenslauf and Europass formats that EU recruiters expect.",
+    },
+    {
+        icon: "💼",
+        title: "LinkedIn optimisation",
+        desc: "Repositioning your profile for the European job market so recruiters actually find and shortlist you.",
+    },
+    {
+        icon: "🎯",
+        title: "Interview preparation",
+        desc: "Simulated technical and HR interview rounds, with feedback modelled on how European employers actually assess.",
+    },
+    {
+        icon: "📨",
+        title: "Direct cold-outreach strategy",
+        desc: "Structured outreach positioning to reach hiring managers directly, not just through job boards.",
+    },
+]
+
+const ausbildungFacts = [
+    {
+        step: 1,
+        title: "Find an employer & sign a contract",
+        desc: "The route starts with a training contract (Ausbildungsvertrag) from a German employer. We help translate your CV to German standards and reach employers directly — over 60,000 Ausbildung positions go unfilled each year, so demand for international candidates is real.",
+    },
+    {
+        step: 2,
+        title: "Reach B1 German (B2 preferred)",
+        desc: "The visa requires at least B1 German under §16a, since training and classes are conducted in German. Most chambers of commerce (IHK/HWK) and employers prefer B2 — we build the language timeline into your plan.",
+    },
+    {
+        step: 3,
+        title: "Apply for the Ausbildung visa",
+        desc: "With contract and language certificate in hand, you apply at the German mission in Islamabad, Karachi, or Lahore. We assemble the full file, including attestation of your documents (HEC/IBCC).",
+    },
+    {
+        step: 4,
+        title: "Train, earn, and transition",
+        desc: "The dual programme runs 2–3.5 years, splitting time between employer and vocational school. On completion you receive an 18-month permit to find qualified work — and switching to a skilled-worker visa (§18a) puts permanent residence within reach after just two more years.",
+    },
+]
+---
+
+<BaseLayout
+    title="Careers & Work Visas — Access Consulting"
+    description="Strategic global mobility for ambitious professionals: Germany's Opportunity Card, skilled worker visas, and premium career mapping.">
+    <!-- hero -->
+    <Section class="bg-linear-to-b from-[#ece7ff] to-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl">
+            Strategic Global Mobility for Ambitious Professionals.
+        </Heading>
+        <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
+            Direct corporate entry into Europe — whether you're a skilled
+            professional targeting Germany's Opportunity Card or building the
+            career strategy to get there.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <Button href="/consulting">Assess my eligibility</Button>
+            <Button href="#chancenkarte" variant="secondary"
+                >Explore the Opportunity Card</Button
+            >
+        </div>
+    </Section>
+
+    <!-- Module A: Chancenkarte -->
+    <Section id="chancenkarte" class="bg-white">
+        <span
+            class="text-sm font-medium uppercase tracking-widest text-primary">
+            Module A
+        </span>
+        <Heading class="mt-3 text-center md:text-4xl lg:text-5xl">
+            Skilled Worker Visa & Opportunity Card (Chancenkarte)
+        </Heading>
+        <p class="mx-auto mt-4 max-w-3xl text-center text-ink/70">
+            Germany's Opportunity Card lets qualified professionals enter for up
+            to 12 months to find skilled work — no job offer required in
+            advance. There are two routes in.
+        </p>
+
+        <!-- two routes -->
+        <div class="mt-10 grid w-full gap-6 lg:grid-cols-2">
+            <FactCard
+                title="Route 1 — Recognised skilled worker"
+                highlight="No points needed">
+                <p>
+                    If your degree or vocational qualification is <strong>
+                        fully recognised &nbsp;
+                    </strong>
+                    in Germany (rated Entspricht/Gleichwertig with an H+ institution
+                    in Anabin), you qualify automatically — no points test required.
+                </p>
+            </FactCard>
+
+            <FactCard
+                title="Route 2 — Points system"
+                highlight="Minimum 6 points">
+                <p>
+                    If your qualification isn't yet fully recognised, you can
+                    still qualify by scoring at least <strong>6 points</strong> across
+                    language, experience, age, and other criteria — while meeting
+                    the baseline requirements.
+                </p>
+            </FactCard>
+        </div>
+
+        <!-- points matrix -->
+        <div class="mt-10 w-full max-w-2xl">
+            <h3 class="mb-2 text-center text-lg font-semibold text-ink">
+                2026 Points Matrix
+            </h3>
+            <p class="mb-6 text-center text-sm text-ink/60">
+                You need 6 points total to qualify via Route 2.
+            </p>
+            <div class="rounded-2xl border border-ink/10 bg-white p-6">
+                {pointsMatrix.map((row) => <PointsRow {...row} />)}
+            </div>
+        </div>
+
+        <!-- baseline requirements -->
+        <div class="mt-8 grid w-full gap-6 md:grid-cols-3">
+            <FactCard title="Language" highlight="A1 DE / B2 EN">
+                <p>
+                    Basic German (A1) or fluent English (B2) as a baseline;
+                    higher German levels earn points.
+                </p>
+            </FactCard>
+            <FactCard
+                title="Financial proof"
+                highlight="€13,092 / year"
+                note="€1,091/month. Current for 2026.">
+                <p>
+                    Provable via a blocked account, declaration of commitment,
+                    or part-time work contract.
+                </p>
+            </FactCard>
+            <FactCard title="Validity" highlight="12 months">
+                <p>
+                    Enter Germany to search for skilled work, with part-time
+                    work (up to 20 hrs/week) and unlimited two-week trial
+                    employments permitted during the search.
+                </p>
+            </FactCard>
+        </div>
+
+        <p class="mt-6 text-center text-sm text-ink/50">
+            Figures and criteria last verified {lastVerified}, based on Section
+            20a of the German Residence Act. Rules are set by German authorities
+            and reviewed periodically.
+        </p>
+
+        <!-- our support -->
+        <div class="mt-14 w-full max-w-2xl">
+            <h3 class="mb-8 text-center text-xl font-semibold text-ink">
+                How we support your application
+            </h3>
+            {chancenkarteSupport.map((s) => <StepCard {...s} />)}
+        </div>
+        <Button href="/consulting" class="mt-4">Check my points score</Button>
+    </Section>
+
+    <!-- Module B: Ausbildung teaser (links to dedicated page) -->
+    <Section id="ausbildung" class="bg-sky-soft">
+        <span
+            class="text-sm font-medium uppercase tracking-widest text-primary">
+            Module B
+        </span>
+        <Heading class="mt-3 text-center md:text-4xl lg:text-5xl"
+            >Ausbildung — Vocational Training</Heading
+        >
+        <p class="mx-auto mt-4 max-w-3xl text-center text-ink/70">
+            Germany's dual vocational system combines paid, on-the-job training
+            with classroom study — a funded, low-cost route into the German
+            workforce and one of the fastest paths to long-term residency. You
+            earn while you train, pay no tuition, and finish with a recognised
+            German qualification.
+        </p>
+
+        <!-- headline facts -->
+        <div class="mt-10 grid w-full gap-6 md:grid-cols-3">
+            <FactCard
+                title="Monthly stipend"
+                highlight="€900–1,200"
+                note="Varies by sector, region, and training year; rises each year.">
+                <p>
+                    You're paid a monthly training allowance
+                    (Ausbildungsvergütung) throughout — no tuition fees, since
+                    training costs are covered by the employer.
+                </p>
+            </FactCard>
+            <FactCard title="Language" highlight="B1 minimum">
+                <p>
+                    At least B1 German is required for the visa; B2 is preferred
+                    by most employers and chambers, as all training is conducted
+                    in German.
+                </p>
+            </FactCard>
+            <FactCard
+                title="Duration"
+                highlight="2–3.5 years"
+                note="Followed by an 18-month permit to find qualified work.">
+                <p>
+                    Time is split between a company and a vocational school
+                    (Berufsschule), giving you both hands-on experience and a
+                    formal qualification.
+                </p>
+            </FactCard>
+        </div>
+
+        <!-- the pathway -->
+        <div class="mt-14 w-full max-w-2xl">
+            <h3 class="mb-8 text-center text-xl font-semibold text-ink">
+                How the pathway works
+            </h3>
+            {ausbildungFacts.map((s) => <StepCard {...s} />)}
+        </div>
+
+        <p class="mt-8 text-center text-sm text-ink/50">
+            Figures last verified {lastVerified}. Requirements and stipend
+            levels are set by German authorities and employers and reviewed
+            periodically — we confirm current details per client.
+        </p>
+
+        <Button href="/consulting" class="mt-8"
+            >Check your Ausbildung eligibility</Button
+        >
+    </Section>
+
+    <!-- Module C: Career mapping -->
+    <Section class="bg-white">
+        <span
+            class="text-sm font-medium uppercase tracking-widest text-primary">
+            Module C
+        </span>
+        <Heading class="mt-3 text-center md:text-4xl lg:text-5xl"
+            >Premium Career Mapping & Job Strategy</Heading
+        >
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">
+            Getting into Europe is one thing; landing the right role is another.
+            This is the hands-on work of making you competitive in the EU
+            market.
+        </p>
+        <div class="mt-10 grid w-full gap-6 md:grid-cols-2">
+            {careerServices.map((s) => <InfoCard {...s} />)}
+        </div>
+    </Section>
+
+    <!-- proof band -->
+    <Section class="bg-ink text-white">
+        <div class="max-w-3xl text-center">
+            <span
+                class="text-sm font-medium uppercase tracking-widest text-white/50">
+                Track record
+            </span>
+            <h2 class="mt-4 text-2xl font-semibold md:text-3xl">
+                We've done this ourselves.
+            </h2>
+            <p class="mt-5 text-lg leading-relaxed text-white/70">
+                Our advisors have sat over 100+ interviews for European and
+                global roles, with team backgrounds spanning Big Tech and
+                BlackRock — the world's largest asset manager. We coach from
+                lived experience of the exact process you're entering.
+            </p>
+        </div>
+    </Section>
+
+    <!-- closing CTA -->
+    <Section class="bg-linear-to-b from-white to-[#ece7ff]">
+        <div class="max-w-2xl text-center">
+            <Heading class="text-center md:text-3xl lg:text-4xl"
+                >Ready to make your move?</Heading
+            >
+            <p class="mt-4 text-lg text-ink/70">
+                Share your profile and we'll map the fastest realistic route
+                into Europe for you.
+            </p>
+            <Button href="/consulting" class="mt-8"
+                >Assess my eligibility</Button
+            >
+        </div>
+    </Section>
+</BaseLayout>

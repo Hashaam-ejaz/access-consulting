@@ -1,0 +1,12 @@
+---
+const { criterion, points } = Astro.props
+---
+
+<div
+    class="flex items-center justify-between gap-4 border-b border-ink/10 py-3.5 last:border-0">
+    <span class="text-ink/80">{criterion}</span>
+    <span
+        class="shrink-0 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
+        {points}
+    </span>
+</div>
