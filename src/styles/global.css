@@ -4,8 +4,8 @@
 
 @theme {
   --color-ink: #18181b;
-  --color-primary: #2050D6;
-
+  --color-primary: #5b34e8;        /* logo purple — buttons, links, accents */
+  --color-primary2: #4a29c9;       /* darker, for hover (your Button uses primary2) */
   --font-sans: "Public Sans Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
