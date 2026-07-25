@@ -6,6 +6,7 @@ import Heading from "../components/Heading.astro"
 import Button from "../components/Button.astro"
 import InfoCard from "../components/InfoCard.astro"
 import StepCard from "../components/StepCard.astro"
+import FactCard from "../components/FactCard.astro"
 
 const lastVerified = "July 2026" // update whenever figures are re-checked
 
@@ -164,18 +165,68 @@ const markets = [
         </p>
 
         <div class="grid w-full gap-6 lg:grid-cols-3">
-            <InfoCard
+            <FactCard
                 title="Blocked account (Sperrkonto)"
-                desc="[CLIENT TO CONFIRM: current minimum deposit for 2026, accepted providers, and how the monthly withdrawal limit works.]"
-            />
-            <InfoCard
+                highlight="€11,904 / year"
+                note="Reviewed annually by the German government. Figure current for 2026.">
+                <ul class="space-y-2">
+                    <li>
+                        Released monthly at a fixed <strong>€992/month</strong> —
+                        you can't withdraw the full amount at once or vary the monthly
+                        figure.
+                    </li>
+                    <li>
+                        Fully operational providers: <strong>Expatrio</strong> and
+                        <strong>Fintiba</strong>.
+                    </li>
+                    <li class="text-sm text-ink/50">
+                        Note: the Opportunity Card (Chancenkarte) has a higher
+                        requirement — see the Careers & Work Visas page.
+                    </li>
+                </ul>
+            </FactCard>
+
+            <FactCard
                 title="Health insurance"
-                desc="[CLIENT TO CONFIRM: public options such as TK and AOK versus private cover like Mawista — who qualifies for which, and what the embassy accepts.]"
-            />
-            <InfoCard
+                highlight="~€141 / month"
+                note="Public rate for 2026, including long-term care insurance.">
+                <ul class="space-y-2">
+                    <li>
+                        <strong>Public</strong> (TK, AOK, Barmer, DAK): the default
+                        for degree-track students under 30, and what the embassy expects.
+                    </li>
+                    <li>
+                        <strong>Private</strong> (Mawista, DR-WALTER, ottonova): required
+                        if you're over 30, or in a language/prep course before formal
+                        enrolment.
+                    </li>
+                    <li>
+                        Rule of thumb: under 30 + direct degree admission →
+                        public. Over 30 or pre-enrolment → private, then switch
+                        once enrolled.
+                    </li>
+                </ul>
+            </FactCard>
+
+            <FactCard
                 title="Student work rights"
-                desc="[CLIENT TO CONFIRM: current permitted working days per year and what counts as a full versus half day.]"
-            />
+                highlight="140 full days / year"
+                note="Resets every 1 January on a calendar-year basis.">
+                <ul class="space-y-2">
+                    <li>
+                        <strong>140 full days or 280 half days</strong> per year (a
+                        full day is 4+ hours; days can be mixed).
+                    </li>
+                    <li>
+                        20 hours/week during term; full-time during breaks, but
+                        those days still count.
+                    </li>
+                    <li>
+                        Degree-required internships don't count; voluntary
+                        internships and mini-jobs do.
+                    </li>
+                </ul>
+            </FactCard>
         </div>
 
         <p class="mt-8 text-center text-sm text-ink/50">
@@ -219,6 +270,29 @@ const markets = [
                     </div>
                 ))
             }
+        </div>
+    </Section>
+
+    <Section class="bg-sky-soft">
+        <div class="mx-auto max-w-3xl text-center">
+            <span
+                class="text-sm font-medium uppercase tracking-widest text-primary">
+                On-ground partner
+            </span>
+            <Heading class="mt-3 text-center md:text-3xl lg:text-4xl"
+                >Supported locally in Pakistan by FES</Heading
+            >
+            <p class="mt-4 text-ink/70">
+                Our official on-ground partner for Germany and EU pathways,
+                giving applicants face-to-face support without leaving Pakistan.
+            </p>
+            <Button
+                href="https://www.fespak.com/"
+                variant="secondary"
+                class="mt-6"
+                target="_blank">
+                Visit FES
+            </Button>
         </div>
     </Section>
 
