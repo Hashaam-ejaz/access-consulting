@@ -1,0 +1,201 @@
+---
+// src/pages/consulting.astro
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Section from "../components/Section.astro"
+import Heading from "../components/Heading.astro"
+import Button from "../components/Button.astro"
+import InfoCard from "../components/InfoCard.astro"
+import MultiStepForm from "../components/MultiStepForm"
+// import MultiStepForm from "../components/MultiStepForm.tsx"; // next step
+
+const whatsappNumber = "4915772312591"
+
+const serviceParts = [
+    {
+        label: "Part 1",
+        title: "Admission & Strategy",
+        tag: "Core Services",
+        items: [
+            {
+                title: "Profile Evaluation & Anabin Check",
+                desc: "Verifying your degree's recognition and eligibility for German Master's programmes.",
+            },
+            {
+                title: "Targeted University Shortlisting",
+                desc: "A precise list of 10-15 tuition-free public universities, scaled to your CGPA.",
+            },
+            {
+                title: "Precision Academic Credit-Mapping",
+                desc: "Aligning your Bachelor's credits with the strict legal requirements German universities enforce, to prevent automatic rejections.",
+            },
+            {
+                title: "Custom Application Drafting",
+                desc: "Full ownership of structuring and writing competitive Letters of Motivation, plus dedicated consultation on your Letters of Recommendation.",
+            },
+            {
+                title: "Application Portal Management",
+                desc: "End-to-end submission within the first 48 hours of portal openings to maximise early-acceptance chances.",
+            },
+            {
+                title: "Scholarship Bonus (3.6+ CGPA)",
+                desc: "Specialised LOM review and strategy for major scholarships — DAAD, Erasmus Mundus, Deutschlandstipendium.",
+            },
+        ],
+    },
+    {
+        label: "Part 2",
+        title: "Visa & Relocation",
+        tag: "Core Services",
+        items: [
+            {
+                title: "Post-Admission & Visa Strategy",
+                desc: "Full guidance on visa processes, embassy waiting-list enrolment, and intake deferrals when necessary.",
+            },
+            {
+                title: "Financial & Health Setup",
+                desc: "Official guidance on funding your Blocked Account and Health Insurance (via Expatrio, Fintiba, TK, etc.).",
+            },
+            {
+                title: "Post-Arrival Relocation SOPs",
+                desc: "Step-by-step guidance on Anmeldung, the Ausländerbehörde, securing a SIM and accommodation, and opening a German bank account.",
+            },
+        ],
+    },
+    {
+        label: "Part 3",
+        title: "Career Integration",
+        tag: "Exclusive Add-On",
+        items: [
+            {
+                title: "Profile Optimisation",
+                desc: "Tailoring your CV and cover letters to German corporate standards, with full LinkedIn optimisation.",
+            },
+            {
+                title: "Early Employment Strategy",
+                desc: "Targeted resources and links for securing student and part-time jobs shortly after landing.",
+            },
+            {
+                title: "Expert Networking",
+                desc: "A 1-on-1 strategy session with an industry expert (5–10+ years in Germany) in your specific field.",
+            },
+        ],
+    },
+]
+---
+
+<BaseLayout
+    title="Consulting — Access Consulting"
+    description="The Access Methodology: personalised consultation from profile evaluation to your first German job.">
+    <!-- hero -->
+    <Section class="bg-linear-to-b from-[#ece7ff] to-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl">
+            The Access Methodology: Personalised Consultation.
+        </Heading>
+        <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
+            From profile evaluation to your first German job — a structured,
+            transparent process, guided by people who've walked it themselves.
+        </p>
+        <div class="mt-8 flex justify-center">
+            <Button href="#evaluate">Start your free evaluation</Button>
+        </div>
+    </Section>
+
+    <!-- founder video placeholder -->
+    <Section class="bg-white">
+        <div class="mx-auto w-full max-w-3xl">
+            <div
+                class="flex aspect-video items-center justify-center rounded-3xl bg-sky-soft text-center text-ink/40">
+                <span>
+                    Founder consultation video / Founder Journey — coming soon
+                </span>
+            </div>
+        </div>
+    </Section>
+
+    <!-- core services suite -->
+    <Section class="bg-sky-soft">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >The Access Consulting Service Suite</Heading
+        >
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">
+            From profile evaluation to your first German job — everything we
+            handle, in three parts.
+        </p>
+
+        <div class="mt-12 grid w-full gap-6 lg:grid-cols-3 lg:items-start">
+            {
+                serviceParts.map((part) => (
+                    <div class="rounded-2xl border border-ink/10 bg-white p-6">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-primary">
+                            {part.label} · {part.tag}
+                        </span>
+                        <h3 class="mt-2 text-xl font-semibold text-ink">
+                            {part.title}
+                        </h3>
+                        <ul class="mt-5 space-y-4">
+                            {part.items.map((item) => (
+                                <li>
+                                    <div class="font-medium text-ink">
+                                        {item.title}
+                                    </div>
+                                    <p class="mt-1 text-sm text-ink/70">
+                                        {item.desc}
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+
+    <!-- FORM SECTION — island goes here next -->
+    <Section id="evaluate" class="bg-white">
+        <div class="mt-10 w-full max-w-2xl">
+            <Heading class="text-center md:text-4xl lg:text-5xl"
+                >Get your free profile evaluation</Heading
+            >
+            <MultiStepForm client:load />
+        </div>
+    </Section>
+
+    <!-- IELTS sub-section -->
+    <Section class="bg-sky-soft">
+        <div class="grid w-full items-center gap-10 lg:grid-cols-2">
+            <div>
+                <span
+                    class="text-sm font-medium uppercase tracking-widest text-primary">
+                    IELTS Preparation
+                </span>
+                <Heading class="mt-3 text-left md:text-3xl lg:text-4xl"
+                    >IELTS Prep with Aisha Ghilani</Heading
+                >
+                <p class="mt-4 text-ink/70">
+                    Structured preparation across all four bands — Listening,
+                    Reading, Writing, and Speaking — with custom mock
+                    assessments and target-score strategies.
+                </p>
+                <ul class="mt-5 space-y-2 text-ink/80">
+                    <li>· 4-band structured preparation</li>
+                    <li>· Custom mock assessments</li>
+                    <li>· Target-score strategies</li>
+                </ul>
+                <div class="mt-6 text-2xl font-semibold text-primary">
+                    PKR 35,000 <span class="text-base font-normal text-ink/60">
+                        flat fee
+                    </span>
+                </div>
+                <Button
+                    href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi, I'd like to book IELTS prep with Aisha.")}`}
+                    class="mt-6">
+                    Book IELTS Prep with Aisha
+                </Button>
+            </div>
+            <div
+                class="flex aspect-video items-center justify-center rounded-3xl bg-white text-ink/40">
+                <span>Aisha's intro video — coming soon</span>
+            </div>
+        </div>
+    </Section>
+</BaseLayout>
