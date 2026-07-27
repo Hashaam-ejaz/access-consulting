@@ -1,4 +1,3 @@
-// src/components/MultiStepForm.tsx
 import { useState, useEffect } from "preact/hooks"
 
 const INTENTS = [
@@ -16,12 +15,7 @@ const APP_STAGE = [
     "Preparing documents",
     "Ready to apply",
 ]
-const INTAKE = [
-    "2026 — Winter",
-    "2027 — Summer",
-    "2027 — Winter",
-    "Not sure yet",
-]
+
 const GERMAN_LEVEL = ["None", "A1", "A2", "B1", "B2", "C1+"]
 
 type FormData = {
