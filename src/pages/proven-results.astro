@@ -1,0 +1,138 @@
+---
+// src/pages/proven-results.astro
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Section from "../components/Section.astro"
+import Heading from "../components/Heading.astro"
+import Button from "../components/Button.astro"
+import ProofCard from "../components/ProofCard.astro"
+import CaseStudy from "../components/CaseStudy.astro"
+
+// --- PROOF GRID: fill with real redacted screenshots ---
+const proofs = [
+    {
+        image: "/proof/visa1.png",
+        tag: "Visa Approval",
+        caption:
+            "Student visa approved — German Embassy Islamabad, Winter 2025 intake.",
+    },
+    {
+        image: "/proof/visa2.png",
+        tag: "Visa Approval",
+        caption:
+            "Student visa approved — German Embassy Islamabad, Winter 2025 intake.",
+    },
+    {
+        image: "/proof/internship1.png",
+        tag: "Internship",
+        caption: "Internship secured for a marketing role..",
+    },
+    {
+        image: "/proof/job1.png",
+        tag: "Job Offer",
+        caption: "werkstudent job offer secured for a marketing role.",
+    },
+    {
+        image: "/proof/lor1.jpg",
+        tag: "University Admission",
+        caption: "German University admission.",
+    },
+    {
+        image: "/proof/lor2.jpg",
+        tag: "University Admission",
+        caption: "German University admission.",
+    },
+]
+
+// --- CASE STUDIES: template data, replace when you have real ones ---
+const caseStudies = [
+    {
+        name: "Case study — lower CGPA to public university",
+        constraint:
+            "2.4 CGPA and a one-year study gap — repeatedly told public universities were out of reach.",
+        intervention:
+            "Precise credit-mapping to identify eligible programmes, a rewritten Letter of Motivation reframing the gap as relevant experience, and a tuition-free public shortlist scaled to the profile.",
+        outcome:
+            "Admission to a tuition-free public university for the Winter 2025 intake.",
+    },
+    {
+        name: "Case study — career switcher to Opportunity Card",
+        constraint:
+            "[TEMPLATE — replace] Professional with a non-recognised degree unsure of eligibility.",
+        intervention:
+            "[TEMPLATE — replace] ZAB assessment, points optimisation to B2 German, and EU-standard CV.",
+        outcome:
+            "[TEMPLATE — replace] Qualified for the Opportunity Card and relocated within X months.",
+    },
+]
+---
+
+<BaseLayout
+    title="Proven Results — Access Consulting"
+    description="Verified visa approvals, university admissions, and scholarship confirmations from real Access Consulting clients.">
+    <!-- hero -->
+    <Section class="bg-linear-to-b from-[#ece7ff] to-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >The Track Record: Tangible Outcomes.</Heading
+        >
+        <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
+            Not promises — proof. Verified approvals, admissions, and
+            scholarship confirmations from people who started exactly where you
+            are.
+        </p>
+    </Section>
+
+    <!-- proof grid -->
+    <Section class="bg-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Verified Outcomes</Heading
+        >
+        <p class="mx-auto mb-10 max-w-2xl text-center text-ink/70">
+            Real visa approvals, admission letters, and scholarship
+            confirmations. All personal details redacted with our clients'
+            consent.
+        </p>
+        <div class="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {proofs.map((p) => <ProofCard {...p} />)}
+        </div>
+    </Section>
+
+    <!-- narrative case studies -->
+    <Section class="bg-sky-soft">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >How We Got There</Heading
+        >
+        <p class="mx-auto mb-12 max-w-2xl text-center text-ink/70">
+            The strategy behind the outcomes — real profiles, real constraints,
+            real results.
+        </p>
+        <div class="flex w-full flex-col gap-8">
+            {caseStudies.map((c) => <CaseStudy {...c} />)}
+        </div>
+    </Section>
+
+    <!-- IELTS success -->
+    <Section class="bg-white">
+        <span
+            class="text-sm font-medium uppercase tracking-widest text-primary">
+            IELTS Success
+        </span>
+        <Heading class="mt-3 text-center md:text-4xl lg:text-5xl"
+            >Band 7.5+ with Aisha Ghilani</Heading
+        >
+        <p class="mx-auto mb-10 max-w-2xl text-center text-ink/70">
+            High-scoring results from students in Aisha's IELTS programme, with
+            clear before-and-after improvement.
+        </p>
+        <!-- reuses ProofCard for scorecards; fill with real redacted scorecards -->
+        <div class="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {/* {ieltsScorecards.map((s) => <ProofCard {...s} />)} */}
+            <div
+                class="col-span-full rounded-2xl border border-dashed border-ink/20 p-10 text-center text-ink/40">
+                IELTS scorecards — coming soon
+            </div>
+        </div>
+        <Button href="/consulting#evaluate" class="mt-10"
+            >Start your free evaluation</Button
+        >
+    </Section>
+</BaseLayout>
