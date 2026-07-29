@@ -7,7 +7,6 @@ import Button from "../components/Button.astro"
 import ProofCard from "../components/ProofCard.astro"
 import CaseStudy from "../components/CaseStudy.astro"
 
-// --- PROOF GRID: fill with real redacted screenshots ---
 const proofs = [
     {
         image: "/proof/visa1.png",
@@ -91,7 +90,8 @@ const caseStudies = [
             confirmations. All personal details redacted with our clients'
             consent.
         </p>
-        <div class="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+            class="w-full columns-1 gap-6 sm:columns-2 lg:columns-3 [&>*]:mb-6 [&>*]:break-inside-avoid">
             {proofs.map((p) => <ProofCard {...p} />)}
         </div>
     </Section>

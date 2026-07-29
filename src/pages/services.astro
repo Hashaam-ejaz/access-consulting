@@ -1,0 +1,142 @@
+---
+// src/pages/services.astro
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Section from "../components/Section.astro"
+import Heading from "../components/Heading.astro"
+import Button from "../components/Button.astro"
+import ServiceCard from "../components/ServiceCard.astro"
+
+const whatsapp = "4915772312591"
+const wa = (msg: string) =>
+    `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`
+
+// PRICING: [CLIENT TO CONFIRM] every price below — only IELTS was given (PKR 35,000)
+const services = [
+    {
+        icon: "📋",
+        title: "Visa Documents Preparation",
+        desc: "Full assembly and vetting of your visa file — financial proofs, motivation letter, and the complete document chain for the German mission.",
+        includes: [
+            "Document checklist & review",
+            "Financial proof guidance",
+            "Embassy-ready file assembly",
+        ],
+        price: "", // [CLIENT TO CONFIRM]
+        ctaLabel: "Get started",
+        ctaHref: "/consulting?intent=study-abroad#evaluate",
+    },
+    {
+        icon: "🎯",
+        title: "1-on-1 Call with Harris",
+        desc: "A dedicated strategy session with our founder — direct, personalised guidance on your specific profile and pathway.",
+        includes: [
+            "Personalised profile review",
+            "Pathway strategy",
+            "Direct founder access",
+        ],
+        price: "", // [CLIENT TO CONFIRM]
+        turnaround: "~45 min session",
+        ctaLabel: "Book a call",
+        ctaHref: wa("Hi, I'd like to book a 1-on-1 call with Harris."),
+    },
+    {
+        icon: "✍️",
+        title: "Letter of Motivation — Drafting",
+        desc: "A competitive LoM / personal statement written from scratch, tailored to your target programme's requirements and ECTS alignment.",
+        includes: [
+            "Written to course requirements",
+            "Programme-specific tailoring",
+            "Full draft ownership",
+        ],
+        price: "", // [CLIENT TO CONFIRM]
+        turnaround: "Turnaround: [confirm]",
+        ctaLabel: "Get started",
+        ctaHref: "/consulting?intent=study-abroad#evaluate",
+    },
+    {
+        icon: "🔍",
+        title: "Letter of Motivation — Review",
+        desc: "Expert review and refinement of your existing LoM / personal statement — structure, tone, and alignment to what selection committees look for.",
+        includes: [
+            "Structural feedback",
+            "Line-level refinement",
+            "Committee-perspective critique",
+        ],
+        price: "", // [CLIENT TO CONFIRM]
+        turnaround: "Turnaround: [confirm]",
+        ctaLabel: "Submit for review",
+        ctaHref: wa(
+            "Hi, I'd like to submit my Letter of Motivation for review."
+        ),
+    },
+    {
+        icon: "📄",
+        title: "CV Review",
+        desc: "Expert review and refinement of your existing CV — structure, tone, and alignment to what recruiters look for.",
+        includes: [
+            "Europass / German format",
+            "Skill & experience framing",
+            "Recruiter-ready polish",
+        ],
+        price: "", // [CLIENT TO CONFIRM]
+        ctaLabel: "Submit your CV",
+        ctaHref: wa("Hi, I'd like to get my CV reviewed."),
+    },
+    {
+        icon: "📄",
+        title: "CV Preparation",
+        desc: "Conversion of your CV into the German / Europass standard — tabular Lebenslauf format, skill highlighting, and recruiter-ready structure.",
+        includes: [
+            "Europass / German format",
+            "Skill & experience framing",
+            "Recruiter-ready polish",
+        ],
+        price: "", // [CLIENT TO CONFIRM]
+        ctaLabel: "Submit your CV",
+        ctaHref: wa("Hi, I'd like to submit my CV for preparation."),
+    },
+    {
+        icon: "🔬",
+        title: "PhD Research Proposal",
+        desc: "Development of a rigorous research proposal aligned to your target supervisor's focus — the foundation of a competitive PhD application.",
+        includes: [
+            "Supervisor-aligned framing",
+            "Methodology structuring",
+            "Academic-grade drafting",
+        ],
+        price: "", // [CLIENT TO CONFIRM]
+        ctaLabel: "Discuss my research",
+        ctaHref: "/consulting?intent=phd#evaluate",
+    },
+]
+---
+
+<BaseLayout
+    title="Services — Access Consulting"
+    description="À la carte services: visa document preparation, Letters of Motivation, CV preparation, PhD research proposals, and 1-on-1 strategy calls.">
+    <!-- hero -->
+    <Section class="bg-linear-to-b from-[#ece7ff] to-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Standalone Services</Heading
+        >
+        <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
+            Need help with one specific piece rather than the full journey?
+            These à la carte services give you expert support exactly where you
+            need it.
+        </p>
+    </Section>
+
+    <!-- services grid -->
+    <Section class="bg-white">
+        <div class="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((s) => <ServiceCard {...s} />)}
+        </div>
+        <p class="mt-10 max-w-2xl text-center text-sm text-ink/50">
+            Not sure which service fits? Start with a free profile evaluation
+            and we'll point you to exactly what you need.
+        </p>
+        <Button href="/consulting#evaluate" class="mt-6"
+            >Get a free evaluation</Button
+        >
+    </Section>
+</BaseLayout>

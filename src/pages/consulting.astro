@@ -92,8 +92,9 @@ const serviceParts = [
             The Access Methodology: Personalised Consultation.
         </Heading>
         <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
-            From profile evaluation to your first German job — a structured,
-            transparent process, guided by people who've walked it themselves.
+            We turn a confusing, high-stakes process into clear, manageable
+            steps — with a team that has personally navigated every stage you're
+            about to face.
         </p>
         <div class="mt-8 flex justify-center">
             <Button href="#evaluate">Start your free evaluation</Button>
@@ -156,7 +157,7 @@ const serviceParts = [
             <Heading class="text-center md:text-2xl lg:text-3xl"
                 >Get your free profile evaluation</Heading
             >
-            <MultiStepForm client:load />
+            <MultiStepForm client:only="preact" />
         </div>
     </Section>
 
