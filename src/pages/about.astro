@@ -1,0 +1,223 @@
+---
+// src/pages/about.astro
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Section from "../components/Section.astro"
+import Heading from "../components/Heading.astro"
+import Button from "../components/Button.astro"
+import TeamCard from "../components/TeamCard.astro"
+import LogoGrid from "../components/LogoGrid.astro"
+
+const values = [
+    {
+        icon: "🔍",
+        title: "Radical transparency",
+        desc: "No hidden fees, no false promises. We tell you honestly what your options are — even when it's not what you hoped to hear.",
+    },
+    {
+        icon: "🎓",
+        title: "Lived experience",
+        desc: "We've personally navigated the admissions, visa, and settling process in Germany. This is guidance from people who've done it, not read about it.",
+    },
+    {
+        icon: "🤝",
+        title: "Scam-free guidance",
+        desc: "The consultancy space is full of bad actors. We built Access to be the honest alternative Pakistani applicants can actually trust.",
+    },
+]
+
+const team = [
+    {
+        name: "Harris Azhar",
+        role: "Founder",
+        image: "/team/harris.png",
+        linkedin: "https://www.linkedin.com/in/harrisazhar/",
+    },
+    {
+        name: "Mir Sanaullah Khan",
+        role: "Senior Advisor Scholarships & US",
+        image: "/team/sanaullah.png",
+        linkedin: "https://www.linkedin.com/in/mirsanaullah/",
+    },
+    {
+        name: "Sohaib Rubnawaz",
+        role: "Senior Advisor Careers - Germany",
+        image: "/team/sohaib.png",
+        linkedin: "https://www.linkedin.com/in/sohaib-rubnawaz/",
+    },
+    {
+        name: "Azfar Waseem",
+        role: "Operations Partner — Islamabad",
+        image: "/team/azfar.png",
+        linkedin: "https://www.linkedin.com/in/azfarwasim/",
+    },
+    {
+        name: "Osama Iqbal",
+        role: "Senior Advisor — PhD & Ausbildung",
+        image: "/team/osama.png",
+        linkedin: "https://www.linkedin.com/in/iqbalosama/",
+    },
+    {
+        name: "Usman Hayat",
+        role: "Partner — North America",
+        image: "/team/usman.png",
+        linkedin: "https://www.linkedin.com/in/usmanhayat16071/",
+    },
+    {
+        name: "Reja Rahmatullah",
+        role: "Senior Advisor — Careers",
+        image: "/team/reja.png",
+        linkedin: "https://www.linkedin.com/in/rejar/",
+    },
+    {
+        name: "Danish Obaid",
+        role: "Senior Advisor — Australia & Canada",
+        image: "/team/danish.png",
+        linkedin: "",
+    },
+]
+
+const partnerLogos = [
+    { name: "Global Hub Cadet College Malir", src: "/logos/ccmk.png" },
+    { name: "Cadet College Jhang", src: "/logos/ccj.png" },
+]
+---
+
+<BaseLayout
+    title="About Us — Access Consulting"
+    description="Founded by a Germany-based practitioner with 9+ years of experience, Access Consulting offers transparent, scam-free guidance to Pakistani applicants.">
+    <!-- hero -->
+    <Section class="bg-linear-to-b from-[#ece7ff] to-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >The people behind your journey.</Heading
+        >
+        <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
+            German nationals of Pakistani origin who've walked the exact path
+            you're on. Built to give honest, transparent guidance in a space
+            that needs it.
+        </p>
+    </Section>
+
+    <!-- story / mission -->
+    <Section class="bg-white">
+        <div class="mx-auto max-w-3xl">
+            <span
+                class="text-sm font-medium uppercase tracking-widest text-primary">
+                Our story
+            </span>
+            <Heading class="mt-3 text-left md:text-3xl lg:text-4xl"
+                >Why we built Access Consulting</Heading
+            >
+            <div class="mt-6 space-y-4 text-lg leading-relaxed text-ink/70">
+                <p>
+                    Access Consulting was founded by Harris Azhar, a
+                    Germany-based practitioner with nearly nine years of
+                    experience living, studying, and working in Germany. Having
+                    navigated the admissions, visa, and career journey himself,
+                    he saw how confusing — and how full of misinformation — the
+                    process was for Pakistani applicants.
+                </p>
+                <p>
+                    The international education space is crowded with agents who
+                    overpromise, hide fees, and push students toward whatever
+                    pays them most. We built Access to be the opposite:
+                    transparent, honest, and genuinely on your side. Every
+                    recommendation we make is one we'd make for our own family.
+                </p>
+            </div>
+        </div>
+    </Section>
+
+    <!-- values -->
+    <Section class="bg-sky-soft">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >What we stand for</Heading
+        >
+        <div class="mt-10 grid w-full gap-6 md:grid-cols-3">
+            {
+                values.map((v) => (
+                    <div class="rounded-2xl border border-ink/10 bg-white p-6">
+                        <div class="mb-4 text-3xl">{v.icon}</div>
+                        <h3 class="text-lg font-semibold text-ink">
+                            {v.title}
+                        </h3>
+                        <p class="mt-2 text-ink/70">{v.desc}</p>
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+
+    <!-- team -->
+    <Section class="bg-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Real people. Real experience.</Heading
+        >
+        <p class="mx-auto mb-12 max-w-2xl text-center text-ink/70">
+            A team spread across Germany, Pakistan, and North America — each
+            advising in the areas they've lived through themselves.
+        </p>
+        <div class="flex w-full flex-wrap justify-center gap-8">
+            {
+                team.map((member) => (
+                    <div class="basis-[calc(50%-1rem)] sm:basis-[calc(33.333%-1.334rem)] lg:basis-[calc(25%-1.5rem)]">
+                        <TeamCard {...member} />
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+
+    <!-- partner organisations -->
+    <Section class="bg-sky-soft">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Partner Organisations</Heading
+        >
+        <div class="mt-8 w-full max-w-md">
+            <LogoGrid logos={partnerLogos} />
+        </div>
+    </Section>
+
+    <!-- giving back -->
+    <Section class="bg-ink text-white">
+        <div class="max-w-3xl text-center">
+            <span
+                class="text-sm font-medium uppercase tracking-widest text-white/50">
+                Giving back
+            </span>
+            <h2 class="mt-4 text-2xl font-semibold md:text-3xl">
+                A commitment to building the future.
+            </h2>
+            <p class="mt-5 text-lg leading-relaxed text-white/70">
+                A dedicated percentage of all Access Consulting revenue directly
+                funds
+                <a
+                    href="https://hamaragharcenter.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="font-medium text-white underline">
+                    Hamara Ghar Welfare Trust
+                </a>, supporting the education and shelter of orphan girls in
+                Islamabad.
+                <span class="mt-3 block text-base text-white/50">
+                    [Client to add: link to annual audit reports for third-party
+                    verification.]
+                </span>
+            </p>
+        </div>
+    </Section>
+
+    <!-- closing CTA -->
+    <Section class="bg-linear-to-b from-white to-[#ece7ff]">
+        <div class="max-w-2xl text-center">
+            <Heading class="text-center md:text-3xl lg:text-4xl"
+                >Let's map your journey together.</Heading
+            >
+            <p class="mt-4 text-lg text-ink/70">
+                Share your profile and we'll come back with the pathways that
+                fit you.
+            </p>
+            <Button href="/consulting#evaluate" class="mt-8">Get started</Button
+            >
+        </div>
+    </Section>
+</BaseLayout>

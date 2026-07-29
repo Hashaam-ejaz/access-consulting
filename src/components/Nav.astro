@@ -2,14 +2,15 @@
 import { Image } from "astro:assets"
 
 const items = [
-    { name: "Study Abroad", href: "/study-abroad" },
-    { name: "Careers & Work Visas", href: "/careers-visas" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
     {
         name: "Services",
         children: [
             { name: "Consulting", href: "/consulting" },
             { name: "Standalone Services", href: "/services" },
-            // { name: "About Us", href: "/about" }, // uncomment when the page is built
+            { name: "Study Abroad", href: "/study-abroad" },
+            { name: "Careers & Work Visas", href: "/careers-visas" },
         ],
     },
     { name: "Proven Results", href: "/proven-results" },
