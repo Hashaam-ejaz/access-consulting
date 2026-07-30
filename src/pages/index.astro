@@ -72,6 +72,16 @@ const networkLogos = [
     { name: "Moonfare", src: "/logos/moonfare.svg" },
     { name: "Wermuth Asset Management", src: "/logos/wermuth.svg" },
     { name: "United Nations", src: "/logos/un.png" },
+    { name: "Chevening", src: "/logos/Chevening.png" },
+    { name: "Fulbright", src: "/logos/fulbright.png" },
+    { name: "Klarna", src: "/logos/klarna.png" },
+    { name: "Amazon", src: "/logos/amazon.png" },
+    { name: "Zolando", src: "/logos/zolando.png" },
+    { name: "Columbia", src: "/logos/columbia.png" },
+    { name: "Revolut", src: "/logos/revolut.png" },
+    { name: "University of York", src: "/logos/york.svg", class: "invert" },
+    { name: "Laurier", src: "/logos/laurier.png" },
+    { name: "Waterloo", src: "/logos/waterloo.png" },
     { name: "Government of Pakistan", src: "/logos/gop.svg" },
     { name: "Cadet College Jhang", src: "/logos/ccj.png" },
     {
@@ -121,7 +131,7 @@ const team = [
     },
     {
         name: "Azfar Waseem",
-        role: "Operations Partner — Islamabad",
+        role: "Operations Lead — Islamabad",
         image: "/team/azfar.png",
         linkedin: "https://www.linkedin.com/in/azfarwasim/",
     },
@@ -172,7 +182,7 @@ const team = [
         </Heading>
         <span
             class="text-center lg:text-2xl md:text-xl text-lg tracking-tight text-ink lg:w-10/12 mx-auto md:mb-7.5 mb-4">
-            Led by Germany-based experts with nearly 9 years of academic and
+            Led by Germany-based experts with nearly 10 years of academic and
             corporate experience. We bridge the gap between Pakistani talent and
             top-tier global destinations.
         </span>
@@ -244,11 +254,18 @@ const team = [
                 </ul>
 
                 <div class="mt-9 flex flex-wrap gap-4">
-                    <Button href="/about">Meet the team</Button>
-                    <Button
-                        href="/consulting?intent=consultation#evaluate"
-                        variant="secondary">Book a free call</Button
-                    >
+                    <div class="mt-9 flex flex-wrap gap-4">
+                        <Button href="/about">Meet the team</Button>
+                        <Button
+                            href={`https://wa.me/4915772312591?text=${encodeURIComponent("Hi, I'd like to book a 45-minute 1-on-1 call with Harris (€30).")}`}
+                            variant="secondary">
+                            Book a call with Harris — €30
+                        </Button>
+                    </div>
+                    <p class="mt-3 text-sm text-ink/60">
+                        45-minute 1-on-1 session. The fee is credited toward
+                        your package if you decide to work with us.
+                    </p>
                 </div>
             </div>
 
@@ -335,25 +352,38 @@ const team = [
 
     <!-- Giving Back -->
     <Section class="bg-ink text-white">
-        <div class="max-w-3xl text-center">
-            <span
-                class="text-sm font-medium uppercase tracking-widest text-white/50">
-                Giving back
-            </span>
-            <h2 class="mt-4 text-2xl font-semibold md:text-3xl">
-                A commitment to building the future.
-            </h2>
-            <p class="mt-5 text-lg leading-relaxed text-white/70">
-                A dedicated percentage of all Access Consulting revenue directly
-                funds &nbsp;
-                <a
-                    href="https://hamaragharcenter.com/"
-                    target="_blank"
-                    class="font-medium text-white">
-                    Hamara Ghar Welfare Trust
-                </a>, supporting the education and shelter of orphan girls in
-                Islamabad.
-            </p>
+        <div class="grid w-full items-center gap-10 lg:grid-cols-2">
+            <!-- text -->
+            <div>
+                <span
+                    class="text-sm font-medium uppercase tracking-widest text-white/50">
+                    Giving back
+                </span>
+                <h2 class="mt-4 text-2xl font-semibold md:text-3xl">
+                    A commitment to building the future.
+                </h2>
+                <p class="mt-5 text-lg leading-relaxed text-white/70">
+                    A dedicated percentage of all Access Consulting revenue
+                    directly funds &nbsp;
+                    <a
+                        href="https://hamaragharcenter.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="font-medium text-white underline">
+                        Hamara Ghar Welfare Trust
+                    </a>, supporting the education and shelter of orphan girls
+                    in Islamabad.
+                </p>
+            </div>
+
+            <!-- image -->
+            <div class="flex items-center justify-center">
+                <img
+                    src="/eleve.svg"
+                    alt="Child Studying SVG"
+                    class="w-full max-w-xs"
+                />
+            </div>
         </div>
     </Section>
 </BaseLayout>

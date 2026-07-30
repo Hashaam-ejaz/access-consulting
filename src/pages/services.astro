@@ -4,139 +4,270 @@ import BaseLayout from "../layouts/BaseLayout.astro"
 import Section from "../components/Section.astro"
 import Heading from "../components/Heading.astro"
 import Button from "../components/Button.astro"
-import ServiceCard from "../components/ServiceCard.astro"
+import PricingCard from "../components/PricingCard.astro"
 
 const whatsapp = "4915772312591"
 const wa = (msg: string) =>
     `https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`
 
-// PRICING: [CLIENT TO CONFIRM] every price below — only IELTS was given (PKR 35,000)
-const services = [
+const europeTiers = [
     {
-        icon: "📋",
-        title: "Visa Documents Preparation",
-        desc: "Full assembly and vetting of your visa file — financial proofs, motivation letter, and the complete document chain for the German mission.",
+        title: "Tier 1 — CGPA 3.5+",
+        upfront: "€350",
+        success: "€400",
+        featured: true,
         includes: [
-            "Document checklist & review",
-            "Financial proof guidance",
-            "Embassy-ready file assembly",
+            "Germany: apply to 8–10 public universities — guaranteed admission at Tier 1 universities",
+            "Review of 2 scholarship LoMs (if assessed eligible)",
         ],
-        price: "", // [CLIENT TO CONFIRM]
-        ctaLabel: "Get started",
-        ctaHref: "/consulting?intent=study-abroad#evaluate",
+        note: "Success fee due once your first admission is received, before visa filing. Valid for 2 intakes.",
     },
     {
-        icon: "🎯",
-        title: "1-on-1 Call with Harris",
-        desc: "A dedicated strategy session with our founder — direct, personalised guidance on your specific profile and pathway.",
+        title: "Tier 2 — CGPA 3.0–3.5",
+        upfront: "€400",
+        success: "€450",
         includes: [
-            "Personalised profile review",
-            "Pathway strategy",
-            "Direct founder access",
+            "Germany: apply to 12–14 public universities",
+            "Scholarship package available separately (subject to profile approval)",
         ],
-        price: "", // [CLIENT TO CONFIRM]
-        turnaround: "~45 min session",
-        ctaLabel: "Book a call",
-        ctaHref: wa("Hi, I'd like to book a 1-on-1 call with Harris."),
+        note: "Success fee due on first admission, before visa filing. Valid for 2 intakes.",
     },
     {
-        icon: "✍️",
-        title: "Letter of Motivation — Drafting",
-        desc: "A competitive LoM / personal statement written from scratch, tailored to your target programme's requirements and ECTS alignment.",
+        title: "Tier 3 — CGPA 2.65–3.0",
+        upfront: "€450",
+        success: "€550",
         includes: [
-            "Written to course requirements",
-            "Programme-specific tailoring",
-            "Full draft ownership",
+            "Germany: apply to 17–20 public universities",
+            "Plus 2–3 private universities as backup (if affordable for the candidate)",
         ],
-        price: "", // [CLIENT TO CONFIRM]
-        turnaround: "Turnaround: [confirm]",
-        ctaLabel: "Get started",
-        ctaHref: "/consulting?intent=study-abroad#evaluate",
-    },
-    {
-        icon: "🔍",
-        title: "Letter of Motivation — Review",
-        desc: "Expert review and refinement of your existing LoM / personal statement — structure, tone, and alignment to what selection committees look for.",
-        includes: [
-            "Structural feedback",
-            "Line-level refinement",
-            "Committee-perspective critique",
-        ],
-        price: "", // [CLIENT TO CONFIRM]
-        turnaround: "Turnaround: [confirm]",
-        ctaLabel: "Submit for review",
-        ctaHref: wa(
-            "Hi, I'd like to submit my Letter of Motivation for review."
-        ),
-    },
-    {
-        icon: "📄",
-        title: "CV Review",
-        desc: "Expert review and refinement of your existing CV — structure, tone, and alignment to what recruiters look for.",
-        includes: [
-            "Europass / German format",
-            "Skill & experience framing",
-            "Recruiter-ready polish",
-        ],
-        price: "", // [CLIENT TO CONFIRM]
-        ctaLabel: "Submit your CV",
-        ctaHref: wa("Hi, I'd like to get my CV reviewed."),
-    },
-    {
-        icon: "📄",
-        title: "CV Preparation",
-        desc: "Conversion of your CV into the German / Europass standard — tabular Lebenslauf format, skill highlighting, and recruiter-ready structure.",
-        includes: [
-            "Europass / German format",
-            "Skill & experience framing",
-            "Recruiter-ready polish",
-        ],
-        price: "", // [CLIENT TO CONFIRM]
-        ctaLabel: "Submit your CV",
-        ctaHref: wa("Hi, I'd like to submit my CV for preparation."),
-    },
-    {
-        icon: "🔬",
-        title: "PhD Research Proposal",
-        desc: "Development of a rigorous research proposal aligned to your target supervisor's focus — the foundation of a competitive PhD application.",
-        includes: [
-            "Supervisor-aligned framing",
-            "Methodology structuring",
-            "Academic-grade drafting",
-        ],
-        price: "", // [CLIENT TO CONFIRM]
-        ctaLabel: "Discuss my research",
-        ctaHref: "/consulting?intent=phd#evaluate",
+        note: "Success fee due on first admission, before visa filing. Valid for 2 intakes.",
     },
 ]
+
+const countryPackages = [
+    {
+        title: "Study in USA",
+        price: "€1,000",
+        includes: ["Complete end-to-end package"],
+        note: "50% advance, 50% on admission.",
+    },
+    {
+        title: "Study in Canada",
+        price: "€1,000",
+        includes: ["Complete end-to-end package"],
+        note: "50% advance, 50% on admission.",
+    },
+    {
+        title: "Study in Australia",
+        price: "€900",
+        includes: ["Complete end-to-end package"],
+        note: "50% advance, 50% on admission.",
+    },
+]
+
+const specialistPackages = [
+    {
+        title: "Scholarship Package",
+        price: "€300",
+        includes: [
+            "Fulbright / Chevening / DAAD-track LoM review and guidance",
+            "Delivered by Fulbright & Chevening scholarship holders",
+        ],
+        ctaHref: wa("Hi, I'm interested in the Scholarship Package."),
+    },
+    {
+        title: "PhD & Research Proposal",
+        price: "€150",
+        includes: [
+            "Rigorous, supervisor-aligned research proposal",
+            "Delivered by our PhD specialist advisor",
+        ],
+        ctaHref: wa("Hi, I'm interested in PhD & Research Proposal support."),
+    },
+]
+
+const careerPackages = [
+    {
+        title: "Career Roadmap & Mapping",
+        price: "€80",
+        includes: [
+            "1-on-1 strategy call",
+            "Target roles, skill gaps, realistic timeline to first EU job",
+        ],
+    },
+    {
+        title: "Mapping + CV & LinkedIn Overhaul",
+        price: "€150",
+        featured: true,
+        includes: [
+            "Everything in Roadmap & Mapping",
+            "Full CV rebuild + LinkedIn optimisation",
+        ],
+    },
+    {
+        title: "Full Career Track",
+        price: "€350",
+        includes: [
+            "Roadmap, CV, LinkedIn, cover letter",
+            "Interview prep + German-language interview coaching",
+        ],
+    },
+]
+
+// à la carte price list
+const individualServices = {
+    "Career Track": [
+        ["One-on-One Strategy Call", "€30"],
+        ["CV / Resume Preparation", "€60"],
+        ["CV / Resume Review", "€35"],
+        ["LinkedIn Optimisation", "€40"],
+    ],
+    "Admissions Track": [
+        ["Letter of Motivation / SOP — Preparation", "€60"],
+        ["Letter of Motivation / SOP — Review", "€35"],
+        ["Letter of Recommendation — Preparation", "€50"],
+        ["Letter of Recommendation — Review", "€35"],
+        ["Visa Documents Preparation", "€200"],
+    ],
+    "Test Prep": [["IELTS Preparation (with Aisha Ghilani)", "PKR 35,000"]],
+}
 ---
 
 <BaseLayout
-    title="Services — Access Consulting"
-    description="À la carte services: visa document preparation, Letters of Motivation, CV preparation, PhD research proposals, and 1-on-1 strategy calls.">
+    title="Services & Pricing — Access Consulting"
+    description="Complete study packages for Germany, Europe, USA, Canada and Australia, plus scholarship, PhD, career, and à la carte services.">
     <!-- hero -->
     <Section class="bg-linear-to-b from-[#ece7ff] to-white">
         <Heading class="text-center md:text-4xl lg:text-5xl"
-            >Standalone Services</Heading
+            >Services & Pricing</Heading
         >
         <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
-            Need help with one specific piece rather than the full journey?
-            These à la carte services give you expert support exactly where you
-            need it.
+            Transparent, upfront pricing — from complete study packages to
+            single-service support. No hidden fees.
         </p>
     </Section>
 
-    <!-- services grid -->
+    <!-- Europe study packages -->
     <Section class="bg-white">
-        <div class="grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => <ServiceCard {...s} />)}
-        </div>
-        <p class="mt-10 max-w-2xl text-center text-sm text-ink/50">
-            Not sure which service fits? Start with a free profile evaluation
-            and we'll point you to exactly what you need.
+        <span
+            class="text-sm font-medium uppercase tracking-widest text-primary">
+            Complete Packages
+        </span>
+        <Heading class="mt-3 text-center md:text-4xl lg:text-5xl"
+            >Study in Europe</Heading
+        >
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">
+            Priced by academic profile. Each package covers an upfront fee plus
+            a success fee, due only once your first admission comes through.
+            Every package is valid for two intakes.
         </p>
-        <Button href="/consulting#evaluate" class="mt-6"
-            >Get a free evaluation</Button
+        <div class="mt-10 grid w-full gap-6 lg:grid-cols-3 lg:items-stretch">
+            {
+                europeTiers.map((t) => (
+                    <PricingCard
+                        {...t}
+                        ctaHref="/consulting?intent=study-abroad#evaluate"
+                    />
+                ))
+            }
+        </div>
+        <p class="mx-auto mt-8 max-w-2xl text-center text-sm text-ink/50">
+            For other European countries the university count may vary, but
+            pricing stays the same. Multi-country applications available on
+            request; pricing may vary case by case.
+        </p>
+    </Section>
+
+    <!-- Other countries -->
+    <Section class="bg-sky-soft">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Study Elsewhere</Heading
+        >
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">
+            Complete flat-rate packages for other top destinations.
+        </p>
+        <div class="mt-10 grid w-full gap-6 md:grid-cols-3">
+            {
+                countryPackages.map((c) => (
+                    <PricingCard
+                        {...c}
+                        ctaHref="/consulting?intent=study-abroad#evaluate"
+                    />
+                ))
+            }
+        </div>
+    </Section>
+
+    <!-- Specialist packages -->
+    <Section class="bg-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Scholarship & PhD</Heading
+        >
+        <div class="mx-auto mt-10 grid w-full max-w-3xl gap-6 md:grid-cols-2">
+            {specialistPackages.map((s) => <PricingCard {...s} />)}
+        </div>
+    </Section>
+
+    <!-- Career packages -->
+    <Section class="bg-sky-soft">
+        <span
+            class="text-sm font-medium uppercase tracking-widest text-primary">
+            Career Track
+        </span>
+        <Heading class="mt-3 text-center md:text-4xl lg:text-5xl"
+            >Career Mapping Packages</Heading
+        >
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">
+            Delivered by recruiters with experience at Revolut, Klarna, Zalando,
+            and Amazon.
+        </p>
+        <div class="mt-10 grid w-full gap-6 md:grid-cols-3 lg:items-stretch">
+            {
+                careerPackages.map((c) => (
+                    <PricingCard
+                        {...c}
+                        ctaHref={wa(
+                            "Hi, I'm interested in your Career Mapping packages."
+                        )}
+                    />
+                ))
+            }
+        </div>
+    </Section>
+
+    <!-- Individual services price list -->
+    <Section class="bg-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Individual Services</Heading
+        >
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">
+            Need just one piece? Pick exactly what you need, à la carte.
+        </p>
+
+        <div class="mx-auto mt-10 w-full max-w-2xl space-y-8">
+            {
+                Object.entries(individualServices).map(([category, rows]) => (
+                    <div>
+                        <h3 class="text-sm font-semibold uppercase tracking-widest text-primary">
+                            {category}
+                        </h3>
+                        <ul class="mt-3 divide-y divide-ink/10 rounded-2xl border border-ink/10 bg-white">
+                            {rows.map(([name, price]) => (
+                                <li class="flex items-center justify-between gap-4 px-5 py-4">
+                                    <span class="text-ink/80">{name}</span>
+                                    <span class="shrink-0 font-semibold text-primary">
+                                        {price}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+
+        <Button href="/consulting#evaluate" class="mt-10"
+            >Not sure? Get a free evaluation</Button
         >
     </Section>
 </BaseLayout>

@@ -1,0 +1,73 @@
+---
+const {
+    title,
+    subtitle = "",
+    upfront = "",
+    success = "",
+    price = "",
+    note = "",
+    includes = [],
+    ctaLabel = "Get started",
+    ctaHref = "/consulting#evaluate",
+    featured = false,
+} = Astro.props
+---
+
+<div
+    class={`flex h-full flex-col rounded-2xl border p-6 ${featured ? "border-primary/50 bg-primary/5 shadow-lg" : "border-ink/10 bg-white"}`}>
+    <h3 class="text-lg font-semibold text-ink">{title}</h3>
+    {subtitle && <p class="mt-1 text-sm text-ink/60">{subtitle}</p>}
+
+    <div class="mt-5">
+        {
+            upfront && (
+                <div>
+                    <div class="flex items-baseline gap-1">
+                        <span class="text-3xl font-semibold text-primary">
+                            {upfront}
+                        </span>
+                        <span class="text-sm text-ink/50">upfront</span>
+                    </div>
+                    {success && (
+                        <div class="mt-1 text-sm text-ink/60">
+                            + {success} success fee{" "}
+                            <span class="text-ink/40">
+                                (on first admission)
+                            </span>
+                        </div>
+                    )}
+                </div>
+            )
+        }
+        {
+            price && !upfront && (
+                <div class="flex items-baseline gap-1">
+                    <span class="text-3xl font-semibold text-primary">
+                        {price}
+                    </span>
+                </div>
+            )
+        }
+    </div>
+
+    {
+        includes.length > 0 && (
+            <ul class="mt-5 space-y-2">
+                {includes.map((item: string) => (
+                    <li class="flex gap-2 text-sm text-ink/70">
+                        <span class="mt-0.5 shrink-0 text-primary">✓</span>
+                        <span>{item}</span>
+                    </li>
+                ))}
+            </ul>
+        )
+    }
+
+    <div class="flex-1"></div>
+    {note && <p class="mt-4 text-xs text-ink/50">{note}</p>}
+    <a
+        href={ctaHref}
+        class="mt-5 block rounded-full bg-ink px-6 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-primary">
+        {ctaLabel}
+    </a>
+</div>
