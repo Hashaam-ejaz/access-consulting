@@ -105,99 +105,96 @@ const items = [
             </button>
         </nav>
     </div>
+</header>
 
-    <div
-        id="menu-backdrop"
-        class="pointer-events-none fixed inset-0 z-40 bg-ink/50 opacity-0 transition-opacity duration-300 lg:hidden">
+<div
+    id="menu-backdrop"
+    class="pointer-events-none fixed inset-0 z-40 bg-ink/50 opacity-0 transition-opacity duration-300 lg:hidden">
+</div>
+
+<aside
+    id="mobile-menu"
+    inert
+    class="fixed right-0 top-0 z-50 flex h-full w-72 translate-x-full flex-col bg-white p-6 shadow-xl transition-transform duration-300 ease-out lg:hidden">
+    <div class="mb-8 flex items-center justify-between">
+        <span class="text-lg font-semibold text-ink">Access Consulting</span>
+        <button
+            id="menu-close"
+            aria-label="Close menu"
+            class="flex h-8 w-8 items-center justify-center text-ink">
+            <svg
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round">
+                <path d="M6 6l12 12M18 6L6 18"></path>
+            </svg>
+        </button>
     </div>
 
-    <aside
-        id="mobile-menu"
-        inert
-        class="fixed right-0 top-0 z-50 flex h-full w-72 translate-x-full flex-col bg-white p-6 shadow-xl transition-transform duration-300 ease-out lg:hidden">
-        <div class="mb-8 flex items-center justify-between">
-            <span class="text-lg font-semibold text-ink">
-                Access Consulting
-            </span>
-            <button
-                id="menu-close"
-                aria-label="Close menu"
-                class="flex h-8 w-8 items-center justify-center text-ink">
-                <svg
-                    width="24"
-                    height="24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round">
-                    <path d="M6 6l12 12M18 6L6 18"></path>
-                </svg>
-            </button>
-        </div>
-
-        <ul class="flex flex-col gap-1">
-            {
-                items.map((item) =>
-                    item.children ? (
-                        <li>
-                            <div class="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-widest text-ink/40">
-                                {item.name}
-                            </div>
-                            {item.children.map((child) => (
-                                <a
-                                    href={child.href}
-                                    class="block rounded-lg px-3 py-3 text-base font-medium text-ink/80 transition-colors hover:bg-sky-soft hover:text-primary">
-                                    {child.name}
-                                </a>
-                            ))}
-                        </li>
-                    ) : (
-                        <li>
+    <ul class="flex flex-col gap-1">
+        {
+            items.map((item) =>
+                item.children ? (
+                    <li>
+                        <div class="px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-widest text-ink/40">
+                            {item.name}
+                        </div>
+                        {item.children.map((child) => (
                             <a
-                                href={item.href}
+                                href={child.href}
                                 class="block rounded-lg px-3 py-3 text-base font-medium text-ink/80 transition-colors hover:bg-sky-soft hover:text-primary">
-                                {item.name}
+                                {child.name}
                             </a>
-                        </li>
-                    )
+                        ))}
+                    </li>
+                ) : (
+                    <li>
+                        <a
+                            href={item.href}
+                            class="block rounded-lg px-3 py-3 text-base font-medium text-ink/80 transition-colors hover:bg-sky-soft hover:text-primary">
+                            {item.name}
+                        </a>
+                    </li>
                 )
-            }
-        </ul>
-
-        href="/consulting" class="mt-6 rounded-full bg-ink px-6 py-3 text-center
-        text-sm font-medium text-white transition-colors hover:bg-primary"> Get
-        Started
-    </aside>
-
-    <script>
-        const openBtn = document.getElementById("menu-open")
-        const closeBtn = document.getElementById("menu-close")
-        const menu = document.getElementById("mobile-menu")
-        const backdrop = document.getElementById("menu-backdrop")
-
-        const open = () => {
-            menu?.classList.remove("translate-x-full")
-            menu?.removeAttribute("inert")
-            backdrop?.classList.remove("opacity-0", "pointer-events-none")
-            openBtn?.setAttribute("aria-expanded", "true")
-            document.body.style.overflow = "hidden"
-            closeBtn?.focus()
+            )
         }
-        const close = () => {
-            menu?.classList.add("translate-x-full")
-            menu?.setAttribute("inert", "")
-            backdrop?.classList.add("opacity-0", "pointer-events-none")
-            openBtn?.setAttribute("aria-expanded", "false")
-            document.body.style.overflow = ""
-            openBtn?.focus()
-        }
+    </ul>
 
-        openBtn?.addEventListener("click", open)
-        closeBtn?.addEventListener("click", close)
-        backdrop?.addEventListener("click", close)
-        document.addEventListener(
-            "keydown",
-            (e) => e.key === "Escape" && close()
-        )
-    </script>
-</header>
+    <a
+        href="/consulting"
+        class="mt-6 rounded-full bg-ink px-6 py-3 text-center
+        text-sm font-medium text-white transition-colors hover:bg-primary">
+        Get Started
+    </a>
+</aside>
+<script>
+    const openBtn = document.getElementById("menu-open")
+    const closeBtn = document.getElementById("menu-close")
+    const menu = document.getElementById("mobile-menu")
+    const backdrop = document.getElementById("menu-backdrop")
+
+    const open = () => {
+        menu?.classList.remove("translate-x-full")
+        menu?.removeAttribute("inert")
+        backdrop?.classList.remove("opacity-0", "pointer-events-none")
+        openBtn?.setAttribute("aria-expanded", "true")
+        document.body.style.overflow = "hidden"
+        closeBtn?.focus()
+    }
+    const close = () => {
+        menu?.classList.add("translate-x-full")
+        menu?.setAttribute("inert", "")
+        backdrop?.classList.add("opacity-0", "pointer-events-none")
+        openBtn?.setAttribute("aria-expanded", "false")
+        document.body.style.overflow = ""
+        openBtn?.focus()
+    }
+
+    openBtn?.addEventListener("click", open)
+    closeBtn?.addEventListener("click", close)
+    backdrop?.addEventListener("click", close)
+    document.addEventListener("keydown", (e) => e.key === "Escape" && close())
+</script>
