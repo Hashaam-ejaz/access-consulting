@@ -6,6 +6,7 @@ import Heading from "../components/Heading.astro"
 import Button from "../components/Button.astro"
 import InfoCard from "../components/InfoCard.astro"
 import MultiStepForm from "../components/MultiStepForm"
+import JourneyMilestone from "../components/JourneyMilestone.astro"
 // import MultiStepForm from "../components/MultiStepForm.tsx"; // next step
 
 const whatsappNumber = "4915772312591"
@@ -81,6 +82,72 @@ const serviceParts = [
         ],
     },
 ]
+
+const journey = [
+    {
+        year: "School years",
+        title: "Where it started — Bahria School",
+        desc: "Recognised early for academic excellence; The first sign of a path that would eventually cross continents.",
+        image: "/journey/school.jpg",
+        align: "left",
+    },
+    {
+        year: "A Levels",
+        title: "A Levels on a full scholarship — Headstart",
+        desc: "Completed A Levels entirely on merit scholarship. Proof that the right guidance and a strong profile can open doors regardless of means.",
+        image: "/journey/a-levels.jpg",
+        align: "right",
+    },
+    {
+        year: "Undergraduate",
+        title: "A 100% scholarship to the University of Alberta",
+        desc: "Won a full bachelor's scholarship to Alberta, but living costs weren't covered. A hard, formative lesson in why funding strategy matters as much as admission, and something we now help every client plan for.",
+        image: "/journey/alberta.jpg",
+        align: "left", // REDACT any ID numbers
+    },
+    {
+        year: "Undergraduate",
+        title: "Graduating from LUMS",
+        desc: "Completed his degree at LUMS, one of Pakistan's leading universities. Pictured with the family who backed the journey.",
+        image: "/journey/lums.jpg",
+        align: "right",
+    },
+    {
+        year: "Early career",
+        title: "From Pakistan to China — G2G diplomacy",
+        desc: "Worked on government-to-government initiatives, including international agreement signings. Early exposure to how institutions and borders really work.",
+        image: "/journey/g2g.jpg",
+        align: "left", // CONFIRM: official event, others in frame
+    },
+    {
+        year: "2016",
+        title: "1st SCO Youth Campus",
+        desc: "Selected among young leaders across the region. Building the international network that now benefits our clients.",
+        image: "/journey/sco.jpg",
+        align: "right", // CONFIRM: others in frame
+    },
+    {
+        year: "Master's, Germany",
+        title: "Studying in Germany — and a visit to the UN",
+        desc: "Moved to Germany for his master's, living first-hand the exact admissions and visa journey he now guides students through. Pictured at the United Nations headquarters.",
+        image: "/journey/un.jpg",
+        align: "left",
+    },
+    {
+        year: "Career",
+        title: "Into European finance — Wermuth Asset Management",
+        desc: "Broke into the German professional world, working in asset management. The corporate integration piece we now coach career clients on.",
+        image: "/journey/wermuth.jpg",
+        align: "right", //
+    },
+    {
+        year: "Today",
+        title: "Building with a Berlin fintech — Moonfare",
+        desc: "Worked with a leading German fintech, having completed the full arc from Pakistani applicant to established professional in Europe. The exact path Access exists to help you walk.",
+        image: "/journey/moonfare.png",
+        align: "left",
+    },
+]
 ---
 
 <BaseLayout
@@ -103,13 +170,23 @@ const serviceParts = [
 
     <!-- founder video placeholder -->
     <Section class="bg-white">
-        <div class="mx-auto w-full max-w-3xl">
-            <div
-                class="flex aspect-video items-center justify-center rounded-3xl bg-sky-soft text-center text-ink/40">
-                <span>
-                    Founder consultation video / Founder Journey — coming soon
-                </span>
-            </div>
+        <div class="mx-auto max-w-2xl text-center">
+            <span
+                class="text-sm font-medium uppercase tracking-widest text-primary">
+                The founder's journey
+            </span>
+            <Heading class="mt-3 text-center md:text-3xl lg:text-4xl"
+                >From Pakistani applicant to European professional.</Heading
+            >
+            <p class="mt-4 text-ink/70">
+                Access Consulting isn't built on theory. Our founder, Harris
+                Azhar, walked the exact path you're on — every scholarship,
+                every visa, every hard decision. Here's the journey.
+            </p>
+        </div>
+
+        <div class="mt-14 flex w-full flex-col gap-16">
+            {journey.map((m) => <JourneyMilestone {...m} />)}
         </div>
     </Section>
 
