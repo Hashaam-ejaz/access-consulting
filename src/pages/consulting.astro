@@ -7,6 +7,7 @@ import Button from "../components/Button.astro"
 import InfoCard from "../components/InfoCard.astro"
 import MultiStepForm from "../components/MultiStepForm"
 import JourneyMilestone from "../components/JourneyMilestone.astro"
+import JourneyTimeline from "../components/JourneyTimeline.astro"
 // import MultiStepForm from "../components/MultiStepForm.tsx"; // next step
 
 const whatsappNumber = "4915772312591"
@@ -85,67 +86,52 @@ const serviceParts = [
 
 const journey = [
     {
-        year: "School years",
-        title: "Where it started — Bahria School",
-        desc: "Recognised early for academic excellence; The first sign of a path that would eventually cross continents.",
+        startYear: 2006,
+        endYear: 2009,
+        title: "Bahria School",
+        desc: "Nine straight A's and a semi-government scholarship — the start of the path.",
         image: "/journey/school.jpg",
-        align: "left",
     },
     {
-        year: "A Levels",
-        title: "A Levels on a full scholarship — Headstart",
-        desc: "Completed A Levels entirely on merit scholarship. Proof that the right guidance and a strong profile can open doors regardless of means.",
+        startYear: 2011,
+        title: "Headstart — full scholarship",
+        desc: "Graduated A Levels with four straight A's on a 100% merit scholarship.",
         image: "/journey/a-levels.jpg",
-        align: "right",
     },
     {
-        year: "Undergraduate",
-        title: "A 100% scholarship to the University of Alberta",
-        desc: "Won a full bachelor's scholarship to Alberta, but living costs weren't covered. A hard, formative lesson in why funding strategy matters as much as admission, and something we now help every client plan for.",
-        image: "/journey/alberta.jpg",
-        align: "left", // REDACT any ID numbers
-    },
-    {
-        year: "Undergraduate",
-        title: "Graduating from LUMS",
-        desc: "Completed his degree at LUMS, one of Pakistan's leading universities. Pictured with the family who backed the journey.",
+        startYear: 2011,
+        endYear: 2015,
+        title: "LUMS",
+        desc: "Completed his degree at one of Pakistan's leading universities, supported by financial aid.",
         image: "/journey/lums.jpg",
-        align: "right",
     },
     {
-        year: "Early career",
-        title: "From Pakistan to China — G2G diplomacy",
-        desc: "Worked on government-to-government initiatives, including international agreement signings. Early exposure to how institutions and borders really work.",
-        image: "/journey/g2g.jpg",
-        align: "left", // CONFIRM: official event, others in frame
-    },
-    {
-        year: "2016",
-        title: "1st SCO Youth Campus",
-        desc: "Selected among young leaders across the region. Building the international network that now benefits our clients.",
-        image: "/journey/sco.jpg",
-        align: "right", // CONFIRM: others in frame
-    },
-    {
-        year: "Master's, Germany",
-        title: "Studying in Germany — and a visit to the UN",
-        desc: "Moved to Germany for his master's, living first-hand the exact admissions and visa journey he now guides students through. Pictured at the United Nations headquarters.",
+        startYear: 2018,
+        endYear: 2021,
+        title: "Master's in Germany",
+        desc: "Thesis on coal economy and renewables, with DIW Berlin (German Institute for Economic Research).",
         image: "/journey/un.jpg",
-        align: "left",
     },
     {
-        year: "Career",
-        title: "Into European finance — Wermuth Asset Management",
-        desc: "Broke into the German professional world, working in asset management. The corporate integration piece we now coach career clients on.",
+        startYear: 2021,
+        title: "Into European industry",
+        desc: "Roles across German finance and tech — the full arc completed.",
         image: "/journey/wermuth.jpg",
-        align: "right", //
+    },
+]
+
+const roadmaps = [
+    {
+        id: "karachi",
+        label: "Karachi Consulate",
+        image: "/roadmap/summer-2027-karachi.png",
+        alt: "German university admissions roadmap for Summer 2027 via the Karachi Consulate",
     },
     {
-        year: "Today",
-        title: "Building with a Berlin fintech — Moonfare",
-        desc: "Worked with a leading German fintech, having completed the full arc from Pakistani applicant to established professional in Europe. The exact path Access exists to help you walk.",
-        image: "/journey/moonfare.png",
-        align: "left",
+        id: "islamabad",
+        label: "Islamabad Embassy",
+        image: "/roadmap/summer-2027-islamabad.png",
+        alt: "German university admissions roadmap for Summer 2027 via the Islamabad Embassy",
     },
 ]
 ---
@@ -170,7 +156,7 @@ const journey = [
 
     <!-- founder video placeholder -->
     <Section class="bg-white">
-        <div class="mx-auto max-w-2xl text-center">
+        <!-- <div class="mx-auto max-w-2xl text-center">
             <span
                 class="text-sm font-medium uppercase tracking-widest text-primary">
                 The founder's journey
@@ -187,6 +173,9 @@ const journey = [
 
         <div class="mt-14 flex w-full flex-col gap-16">
             {journey.map((m) => <JourneyMilestone {...m} />)}
+        </div> -->
+        <div class="mt-14">
+            <JourneyTimeline journey={journey} />
         </div>
     </Section>
 
@@ -238,6 +227,47 @@ const journey = [
         </div>
     </Section>
 
+    <Section class="bg-white" id="roadmap">
+        <Heading class="text-center md:text-3xl lg:text-4xl"
+            >The German Admissions Roadmap</Heading
+        >
+        <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">
+            Your full timeline from documentation to enrolment — mapped by
+            intake and by mission.
+        </p>
+
+        <!-- tabs -->
+        <div class="mt-8 flex justify-center gap-2">
+            {
+                roadmaps.map((r, i) => (
+                    <button
+                        data-roadmap-tab={r.id}
+                        class={`rounded-full px-5 py-2 text-sm font-medium bg-primary/10`}>
+                        {r.label}
+                    </button>
+                ))
+            }
+        </div>
+
+        <!-- panels -->
+        <div class="mt-8 w-full">
+            {
+                roadmaps.map((r, i) => (
+                    <div
+                        data-roadmap-panel={r.id}
+                        class={i === 0 ? "" : "hidden"}>
+                        <img
+                            src={r.image}
+                            alt={r.alt}
+                            class="mx-auto w-full max-w-5xl rounded-2xl border border-ink/10"
+                            loading="lazy"
+                        />
+                    </div>
+                ))
+            }
+        </div>
+    </Section>
+
     <!-- IELTS sub-section -->
     <Section class="bg-blue-100" id="ielts">
         <div class="grid w-full items-center gap-10 lg:grid-cols-2">
@@ -277,3 +307,26 @@ const journey = [
         </div>
     </Section>
 </BaseLayout>
+
+<script>
+    const tabs = document.querySelectorAll("[data-roadmap-tab]")
+    const panels = document.querySelectorAll("[data-roadmap-panel]")
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const id = tab.getAttribute("data-roadmap-tab")
+            tabs.forEach((t) => {
+                const active = t === tab
+                t.classList.toggle("bg-primary", active)
+                // t.classList.toggle("text-white", active)
+                t.classList.toggle("bg-blue-100", !active)
+                t.classList.toggle("text-ink/70", !active)
+            })
+            panels.forEach((p) =>
+                p.classList.toggle(
+                    "hidden",
+                    p.getAttribute("data-roadmap-panel") !== id
+                )
+            )
+        })
+    })
+</script>
