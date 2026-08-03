@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "@fontsource-variable/public-sans";
-
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-ink: #18181b;

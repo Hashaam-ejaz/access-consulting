@@ -5,7 +5,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 import preact from '@astrojs/preact';
 
-// https://astro.build/config
+import sanity from "@sanity/astro";
+
+
 export default defineConfig({
   vite: {
   plugins: [tailwindcss()],
@@ -16,19 +18,16 @@ export default defineConfig({
       "react/jsx-runtime": "preact/jsx-runtime",
     },
   },
-  optimizeDeps: {
-    include: ["downshift"],
-    esbuildOptions: {
-      alias: {
-        react: "preact/compat",
-        "react-dom": "preact/compat",
-      },
-    },
-  },
 },
 
   integrations: [
-    preact({ compat: true }),   // ← the compat flag adds the react aliases
+    preact({ compat: true }),
+    sanity({
+      projectId: "ydoyouty",
+      dataset: "prod",
+      useCdn: false,
+      apiVersion: "2024-01-01",
+    }),
   ],
 
 });

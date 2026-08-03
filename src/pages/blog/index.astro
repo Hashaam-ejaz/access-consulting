@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Section from "../../components/Section.astro"
+import Heading from "../../components/Heading.astro"
+import BlogList from "../../components/BlogList.tsx"
+import { getPosts, getCategories } from "../../lib/sanity"
+
+const posts = await getPosts()
+const categories = await getCategories()
+---
+
+<BaseLayout
+    title="Blog — Access Consulting"
+    description="Expert insights on studying, working, and settling in Germany and Europe.">
+    <Section class="bg-linear-to-b from-[#ece7ff] to-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl"
+            >Informed Decisions</Heading
+        >
+        <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
+            Expert insights on global migration, admissions, and building your
+            future abroad.
+        </p>
+    </Section>
+    <Section class="bg-white">
+        <BlogList client:load posts={posts} categories={categories} />
+    </Section>
+</BaseLayout>
