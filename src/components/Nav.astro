@@ -17,10 +17,12 @@ const items = [
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
 ]
+
+const LINKTREE_URL = "https://linktr.ee/accessventure130"
 ---
 
 <header
-    class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-ink/5">
+    class="sticky top-0 z-50 w-full border-b border-ink/5 bg-white/90 backdrop-blur-md">
     <div class="mx-auto max-w-7xl px-6 py-3">
         <nav class="flex items-center justify-between gap-8">
             <a href="/" class="shrink-0">
@@ -79,14 +81,35 @@ const items = [
                     )
                 }
             </ul>
-            <a
-                href="/consulting"
-                class="hidden shrink-0 rounded-full bg-ink px-6
-            py-2.5 text-sm font-medium text-white transition-colors duration-300
-            hover:bg-primary lg:inline-block">
-                Get Started
-            </a>
 
+            <!-- Desktop Actions -->
+            <div class="hidden items-center gap-3 lg:flex shrink-0">
+                <a
+                    href={LINKTREE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Linktree Links"
+                    class="flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 text-sm font-medium text-ink transition-colors duration-300 hover:border-primary hover:bg-sky-soft hover:text-primary"
+                    title="Our Social & Quick Links">
+                    <svg
+                        class="h-4 w-4 fill-current"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path
+                            d="m13.736 5.853 4.005-4.117 2.325 2.38-4.22 4.337h5.908v3.261h-5.908l4.22 4.338-2.325 2.38-4.005-4.118v8.682H9.795v-8.682l-4.005 4.118-2.325-2.38 4.22-4.338H1.777V8.453h5.908l-4.22-4.337 2.325-2.38 4.005 4.117V0h3.941v5.853z">
+                        </path>
+                    </svg>
+                    <span>Links</span>
+                </a>
+
+                <a
+                    href="/consulting"
+                    class="rounded-full bg-ink px-6 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-primary">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Button -->
             <button
                 id="menu-open"
                 aria-label="Open menu"
@@ -134,7 +157,7 @@ const items = [
         </button>
     </div>
 
-    <ul class="flex flex-col gap-1">
+    <ul class="flex flex-col gap-1 overflow-y-auto">
         {
             items.map((item) =>
                 item.children ? (
@@ -163,13 +186,29 @@ const items = [
         }
     </ul>
 
-    <a
-        href="/consulting"
-        class="mt-6 rounded-full bg-ink px-6 py-3 text-center
-        text-sm font-medium text-white transition-colors hover:bg-primary">
-        Get Started
-    </a>
+    <!-- Mobile Action Buttons -->
+    <div class="mt-auto pt-6 flex flex-col gap-3 border-t border-ink/5">
+        <a
+            href={LINKTREE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 rounded-full border border-ink/15 px-6 py-2.5 text-center text-sm font-medium text-ink transition-colors hover:border-primary hover:bg-sky-soft hover:text-primary">
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                <path
+                    d="m13.736 5.853 4.005-4.117 2.325 2.38-4.22 4.337h5.908v3.261h-5.908l4.22 4.338-2.325 2.38-4.005-4.118v8.682H9.795v-8.682l-4.005 4.118-2.325-2.38 4.22-4.338H1.777V8.453h5.908l-4.22-4.337 2.325-2.38 4.005 4.117V0h3.941v5.853z">
+                </path>
+            </svg>
+            <span>Quick Links (Linktree)</span>
+        </a>
+
+        <a
+            href="/consulting"
+            class="rounded-full bg-ink px-6 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-primary">
+            Get Started
+        </a>
+    </div>
 </aside>
+
 <script>
     const openBtn = document.getElementById("menu-open")
     const closeBtn = document.getElementById("menu-close")
