@@ -29,9 +29,9 @@ const linkGroups = [
 ]
 
 const offices = [
-    { city: "Frankfurt, Germany", address: "Bromstraße, Frankfurt" },
+    { city: "Frankfurt, Germany (HQ)", address: "Bromstraße, Frankfurt" },
     {
-        city: "Gujranwala, Pakistan",
+        city: "Gujranwala, Pakistan (Partner Office)",
         address: "First Floor, Prisma Mall, Cantt, Gujranwala",
     },
     {
@@ -42,11 +42,11 @@ const offices = [
 ]
 
 const socials = [
-    { name: "Instagram", href: "https://instagram.com/AccessConsulting123" },
+    { name: "Instagram", href: "https://instagram.com/Harris.azhar" },
     { name: "LinkedIn", href: "https://www.linkedin.com/in/harrisazhar/" },
     { name: "YouTube", href: "https://youtube.com/@HarrisAzhar2807" },
     { name: "WhatsApp", href: "https://wa.me/4915772312591" },
-    { name: "Gmail", href: "mailto:Harrisazhar130@gmail.com" },
+    { name: "Gmail", href: "mailto:info@TheAccessConsulting.com" },
 ]
 
 const year = new Date().getFullYear()
@@ -55,6 +55,7 @@ const year = new Date().getFullYear()
 <footer class="bg-ink text-white">
     <div class="mx-auto max-w-7xl px-6 py-16">
         <div class="flex flex-col gap-12 lg:flex-row lg:justify-between">
+            <!-- brand column -->
             <div class="lg:max-w-sm">
                 <a href="/" class="inline-flex items-center gap-3">
                     <Image
@@ -84,13 +85,14 @@ const year = new Date().getFullYear()
                     </li>
                     <li>
                         <a
-                            href="mailto:accessventure130@gmail.com"
+                            href="mailto:info@TheAccessConsulting.com"
                             class="text-white/70 transition-colors hover:text-white">
-                            accessventure130@gmail.com
+                            info@TheAccessConsulting.com
                         </a>
                     </li>
                 </ul>
 
+                <!-- socials — now a sibling of the ul, not inside it -->
                 <div class="mt-6 flex gap-3">
                     {
                         socials.map((s) => (
@@ -146,7 +148,7 @@ const year = new Date().getFullYear()
                 </div>
             </div>
 
-            <!-- link columns -->
+            <!-- link columns — sibling of the brand column -->
             <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:gap-14">
                 {
                     linkGroups.map((group) => (
@@ -171,7 +173,7 @@ const year = new Date().getFullYear()
             </div>
         </div>
 
-        <!-- offices -->
+        <!-- offices — after the flex row -->
         <div class="mt-14 border-t border-white/10 pt-10">
             <h3
                 class="text-sm font-semibold uppercase tracking-wider text-white/40">
@@ -194,8 +196,10 @@ const year = new Date().getFullYear()
         </div>
 
         <!-- bottom bar -->
-        <div class="mt-12 border-t border-white/10 pt-8 text-sm text-white/50">
-            © {year} Access Consulting. All rights reserved.
+        <div
+            class="mt-12 flex flex-col gap-2 border-t border-white/10 pt-8 text-sm text-white/50 sm:flex-row sm:justify-between">
+            <span>© {year} Access Consulting. All rights reserved.</span>
+            <a href="/privacy" class="hover:text-white">Privacy Policy</a>
         </div>
     </div>
 </footer>

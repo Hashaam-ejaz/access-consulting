@@ -1,0 +1,146 @@
+---
+// src/pages/privacy.astro
+import BaseLayout from "../layouts/BaseLayout.astro"
+import Section from "../components/Section.astro"
+import Heading from "../components/Heading.astro"
+
+const lastUpdated = "August 2026" // update when the policy changes
+const contactEmail = "[official email]" // [CLIENT TO CONFIRM — use the domain email]
+---
+
+<BaseLayout
+    title="Privacy Policy — Access Consulting"
+    description="How Access Consulting collects, uses, and protects your personal information.">
+    <Section class="bg-linear-to-b from-[#ece7ff] to-white">
+        <div class="mx-auto max-w-3xl text-center">
+            <Heading class="text-center md:text-4xl lg:text-5xl"
+                >Privacy Policy</Heading
+            >
+            <p class="mt-4 text-ink/60">Last updated: {lastUpdated}</p>
+        </div>
+    </Section>
+
+    <Section class="bg-white">
+        <article
+            class="prose prose-lg mx-auto max-w-3xl prose-headings:font-semibold prose-headings:text-ink prose-p:text-ink/70 prose-li:text-ink/70 prose-a:text-primary">
+            <p>
+                Access Consulting ("we", "us", "our") is committed to protecting
+                your privacy. This policy explains what information we collect
+                when you use our website, how we use it, and the rights you have
+                over it.
+            </p>
+
+            <h2>Who we are</h2>
+            <p>
+                Access Consulting is an international education and immigration
+                consultancy with offices in Germany and Pakistan. If you have
+                any questions about this policy or your data, you can contact us
+                at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+            </p>
+
+            <h2>Information we collect</h2>
+            <p>
+                When you submit our profile evaluation or contact forms, we may
+                collect:
+            </p>
+            <ul>
+                <li>Your name, email address, and phone number</li>
+                <li>
+                    Your academic details, such as your degree, CGPA,
+                    university, and field of study
+                </li>
+                <li>Your target country, intake, and language test results</li>
+                <li>Any additional information you choose to share with us</li>
+            </ul>
+            <p>
+                We only collect information you provide to us directly. We do
+                not ask for sensitive financial details such as passwords or
+                payment card numbers through our website forms.
+            </p>
+
+            <h2>How we use your information</h2>
+            <p>We use the information you provide to:</p>
+            <ul>
+                <li>
+                    Assess your profile and recommend suitable education or visa
+                    pathways
+                </li>
+                <li>
+                    Respond to your enquiries and provide our consultancy
+                    services
+                </li>
+                <li>
+                    Contact you about your application or our services,
+                    including by email, phone, or WhatsApp
+                </li>
+                <li>Improve our services and website</li>
+            </ul>
+            <p>We do not sell your personal information to anyone.</p>
+
+            <h2>Sharing and third parties</h2>
+            <p>
+                We use trusted third-party services to operate our website and
+                communicate with you, which may process your data on our behalf:
+            </p>
+            <ul>
+                <li>
+                    <strong>Cloudflare</strong> — website hosting and delivery
+                </li>
+                <li>
+                    <strong>Sanity</strong> — content management for our blog
+                </li>
+                <li>
+                    Our <strong>email and messaging providers</strong> — to receive
+                    your enquiries and reply to you
+                </li>
+            </ul>
+            <p>
+                We only share your information where necessary to provide our
+                services, and we do not share it for any other purpose without
+                your consent.
+            </p>
+
+            <h2>How long we keep your data</h2>
+            <p>
+                We keep your information only as long as needed to provide our
+                services and respond to your enquiry, unless a longer period is
+                required by law. You can ask us to delete your information at
+                any time.
+            </p>
+
+            <h2>Your rights</h2>
+            <p>
+                Depending on where you live, you may have the right to access,
+                correct, or delete the personal information we hold about you,
+                and to object to or restrict how we use it. If you are in the
+                European Union, these rights are protected under the General
+                Data Protection Regulation (GDPR). To exercise any of these
+                rights, contact us at
+                <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+            </p>
+
+            <h2>Cookies</h2>
+            <p>
+                Our website uses only the minimal cookies needed for it to
+                function. We do not use advertising or third-party tracking
+                cookies. [Update this section if you later add analytics such as
+                Google Analytics.]
+            </p>
+
+            <h2>Changes to this policy</h2>
+            <p>
+                We may update this policy from time to time. Any changes will be
+                posted on this page with an updated "last updated" date.
+            </p>
+
+            <h2>Contact</h2>
+            <p>
+                If you have any questions about this privacy policy or how we
+                handle your data, please contact us at <a
+                    href={`mailto:${contactEmail}`}>
+                    {contactEmail}
+                </a>.
+            </p>
+        </article>
+    </Section>
+</BaseLayout>

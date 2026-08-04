@@ -25,13 +25,14 @@ const values = [
     },
 ]
 
+const founder = {
+    name: "Harris Azhar",
+    role: "Founder",
+    image: "/team/harris.png",
+    linkedin: "https://www.linkedin.com/in/harrisazhar/",
+}
+
 const team = [
-    {
-        name: "Harris Azhar",
-        role: "Founder",
-        image: "/team/harris.png",
-        linkedin: "https://www.linkedin.com/in/harrisazhar/",
-    },
     {
         name: "Mir Sanaullah Khan",
         role: "Senior Advisor Scholarships & US",
@@ -174,6 +175,7 @@ const partnerLogos = [
     </Section>
 
     <!-- team -->
+    <!-- team -->
     <Section class="bg-white">
         <Heading class="text-center md:text-4xl lg:text-5xl"
             >Real people. Real experience.</Heading
@@ -182,7 +184,18 @@ const partnerLogos = [
             A team spread across Germany, Pakistan, and North America — each
             advising in the areas they've lived through themselves.
         </p>
-        <div class="flex w-full flex-wrap justify-center gap-8">
+
+        <!-- founder, elevated + centered, overlaps the grid below -->
+        <div class="relative z-10 mb-[-2.5rem] flex justify-center">
+            <div
+                class="w-56 rounded-2xl border-2 border-primary bg-white p-2 shadow-xl">
+                <TeamCard {...founder} />
+            </div>
+        </div>
+
+        <!-- rest of the team, pushed down so the founder card overlaps it -->
+        <div
+            class="flex w-full flex-wrap justify-center gap-8 rounded-3xl bg-sky-soft/50 pt-16 pb-10">
             {
                 team.map((member) => (
                     <div class="basis-[calc(50%-1rem)] sm:basis-[calc(33.333%-1.334rem)] lg:basis-[calc(25%-1.5rem)]">
@@ -192,7 +205,6 @@ const partnerLogos = [
             }
         </div>
     </Section>
-
     <!-- partner organisations -->
     <Section class="bg-sky-soft">
         <Heading class="text-center md:text-4xl lg:text-5xl"
