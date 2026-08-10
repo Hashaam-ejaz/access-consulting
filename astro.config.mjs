@@ -8,6 +8,9 @@ import preact from '@astrojs/preact';
 import sanity from "@sanity/astro";
 
 
+import cloudflare from "@astrojs/cloudflare";
+
+
 export default defineConfig({
   vite: {
   plugins: [tailwindcss()],
@@ -30,4 +33,5 @@ export default defineConfig({
     }),
   ],
 
+  adapter: cloudflare(),
 });

@@ -1,0 +1,72 @@
+---
+// src/components/VideoEmbed.astro
+interface Props {
+    fileId: string
+    poster: string
+    title: string
+}
+const { fileId, poster, title } = Astro.props
+---
+
+<div
+    class="video-embed group relative aspect-video w-full overflow-hidden rounded-3xl bg-black shadow-xl shadow-black/10 ring-1 ring-black/5"
+    data-file-id={fileId}>
+    <!-- Poster image — own absolute layer, fills the box edge-to-edge -->
+    <img
+        src={poster}
+        alt={title}
+        class="video-embed-poster pointer-events-none absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+    />
+
+    <!-- Darkening gradient — own layer -->
+    <div
+        class="video-embed-gradient pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent">
+    </div>
+
+    <!-- Poster state -->
+    <button
+        type="button"
+        class="video-embed-trigger absolute inset-0 flex items-center justify-center"
+        aria-label={`Play video: ${title}`}>
+        <span
+            class="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur transition-transform duration-300 group-hover:scale-110 md:h-20 md:w-20">
+            <svg
+                class="ml-1 h-6 w-6 text-ink md:h-7 md:w-7"
+                viewBox="0 0 24 24"
+                fill="currentColor">
+                <path d="M8 5v14l11-7z"></path>
+            </svg>
+        </span>
+    </button>
+
+    <!-- Iframe mounts here on click -->
+    <div class="video-embed-frame hidden h-full w-full"></div>
+</div>
+
+<script>
+    document.querySelectorAll(".video-embed").forEach((wrapper) => {
+        const trigger = wrapper.querySelector(".video-embed-trigger")
+        const poster = wrapper.querySelector(".video-embed-poster")
+        const gradient = wrapper.querySelector(".video-embed-gradient")
+        const frameHost = wrapper.querySelector(".video-embed-frame")
+        const fileId = wrapper.getAttribute("data-file-id")
+
+        trigger?.addEventListener("click", () => {
+            if (!frameHost) return
+            frameHost.innerHTML = `
+        <iframe
+          src="https://drive.google.com/file/d/${fileId}/preview"
+          class="h-full w-full"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          frameborder="0"
+        ></iframe>
+      `
+            frameHost.classList.remove("hidden")
+            trigger.remove()
+            poster?.remove()
+            gradient?.remove()
+        })
+    })
+</script>

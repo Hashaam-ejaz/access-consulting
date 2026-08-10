@@ -69,6 +69,24 @@ const caseStudies = [
             "Admission to a tuition-free public university for the Winter 2025 intake.",
     },
 ]
+
+const ieltsProofs = [
+    {
+        image: "/proof/ielts1.jpg",
+        tag: "IELTS Scorecard",
+        // caption: "IELTS scorecard — 7.5 overall, 8.0 in Speaking.",
+    },
+    {
+        image: "/proof/ielts2.jpg",
+        tag: "IELTS Scorecard",
+        // caption: "IELTS Student Review.",
+    },
+    {
+        image: "/proof/ielts3.jpg",
+        tag: "IELTS Scorecard",
+        // caption: "IELTS scorecard — 7.5 overall, 8.0 in Speaking.",
+    },
+]
 ---
 
 <BaseLayout
@@ -130,13 +148,13 @@ const caseStudies = [
             clear before-and-after improvement.
         </p>
         <!-- reuses ProofCard for scorecards; fill with real redacted scorecards -->
-        <div class="grid w-full gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {/* {ieltsScorecards.map((s) => <ProofCard {...s} />)} */}
+        <div class="flex flex-col w-full gap-6 md:flex-col">
             <div
-                class="col-span-full rounded-2xl border border-dashed border-ink/20 p-10 text-center text-ink/40">
-                IELTS scorecards — coming soon
+                class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 items-start">
+                {ieltsProofs.map((p) => <ProofCard {...p} />)}
             </div>
         </div>
+
         <Button href="/consulting#evaluate" class="mt-10"
             >Start your free evaluation</Button
         >

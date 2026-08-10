@@ -16,7 +16,7 @@ const APP_STAGE = ["Exploring / Researching", "Preparing documents", "Ready to a
 const GERMAN_LEVEL = ["N/A", "A1", "A2", "B1", "B2", "C1+"];
 
 const WHATSAPP = "4915772312591";
-const EMAIL = "[official email]"; // [CLIENT TO CONFIRM]
+const EMAIL = "Info@TheAccessConsulting.com"; // [CLIENT TO CONFIRM]
 
 type FormData = {
   name: string; email: string; phone: string;
@@ -165,15 +165,15 @@ export default function MultiStepForm() {
       )}
 
       <div class="mt-8 flex items-center justify-between">
-        <button onClick={back} disabled={step === 0}
+        <button type="button" onClick={back} disabled={step === 0}
           class="rounded-full px-6 py-2.5 text-sm font-medium text-ink/60 transition-colors hover:text-ink disabled:invisible">← Back</button>
         {isLast ? (
-          <button onClick={submit} disabled={status === "sending"}
+          <button type="button" onClick={submit} disabled={status === "sending"}
             class="rounded-full bg-primary px-8 py-2.5 text-sm font-medium text-white transition-transform hover:scale-95 disabled:opacity-60">
             {status === "sending" ? "Submitting…" : "Submit profile"}
           </button>
         ) : (
-          <button onClick={next}
+          <button type="button" onClick={next}
             class="rounded-full bg-ink px-8 py-2.5 text-sm font-medium text-white transition-transform hover:scale-95">Continue →</button>
         )}
       </div>

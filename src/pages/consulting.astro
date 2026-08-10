@@ -8,6 +8,7 @@ import InfoCard from "../components/InfoCard.astro"
 import MultiStepForm from "../components/MultiStepForm"
 import JourneyMilestone from "../components/JourneyMilestone.astro"
 import JourneyTimeline from "../components/JourneyTimeline.astro"
+import VideoEmbed from "../components/VideoEmbed.astro"
 // import MultiStepForm from "../components/MultiStepForm.tsx"; // next step
 
 const whatsappNumber = "4915772312591"
@@ -300,10 +301,11 @@ const roadmaps = [
                     Book IELTS Prep with Aisha
                 </Button>
             </div>
-            <div
-                class="flex aspect-video items-center justify-center rounded-3xl bg-white text-ink/40">
-                <span>Aisha's intro video — coming soon</span>
-            </div>
+            <VideoEmbed
+                fileId="1-7gyIyK6r_CAMcHwvxpDTys_FGgZp6OO"
+                poster="/videos/aisha-ielts-poster.jpg"
+                title="Aisha's IELTS intro"
+            />
         </div>
     </Section>
 </BaseLayout>
