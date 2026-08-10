@@ -149,7 +149,7 @@ const team = [
     },
     {
         name: "Asad Rizvi",
-        role: "Operations Partner — Islamabad",
+        role: "Senior Advisor Careers and Strategy",
         image: "/team/asad.png",
         linkedin: "https://www.linkedin.com/in/assad-rizvi/",
     },
@@ -344,7 +344,6 @@ const team = [
         </Button>
     </Section>
 
-    <!-- Giving Back -->
     <Section class="bg-ink text-white">
         <div class="grid w-full items-center gap-10 lg:grid-cols-2">
             <!-- text -->
@@ -358,26 +357,30 @@ const team = [
                 </h2>
                 <p class="mt-5 text-lg leading-relaxed text-white/70">
                     A dedicated percentage of all Access Consulting revenue
-                    directly funds &nbsp;
-                    <a
+                    directly funds &nbsp; <a
                         href="https://hamaragharcenter.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="font-medium text-white underline">
+                        class="font-medium
+                    text-white underline">
                         Hamara Ghar Welfare Trust
                     </a>, supporting the education and shelter of orphan girls
                     in Islamabad.
                 </p>
             </div>
-
-            <!-- image -->
             <div class="flex items-center justify-center">
-                <img
-                    src="/eleve.svg"
-                    alt="Child Studying SVG"
-                    class="w-full max-w-xs"
-                />
+                <dotlottie-wc
+                    src="/animations/child-studying.lottie"
+                    autoplay
+                    loop
+                    style="width: 100%; max-width: 30rem;"></dotlottie-wc>
             </div>
+
+            <!-- animation -->
         </div>
     </Section>
+
+    <script>
+        import "@lottiefiles/dotlottie-wc"
+    </script>
 </BaseLayout>

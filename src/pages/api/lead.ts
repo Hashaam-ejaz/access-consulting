@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { env } from "cloudflare:workers";
 
 export const prerender = false;
 const REQUIRED_FIELDS = ["name", "email", "phone"];
@@ -11,7 +12,6 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ ok: false, error: "Invalid JSON" }), { status: 400 });
   }
 
-  // basic server-side validation (mirror your client checks)
   for (const field of REQUIRED_FIELDS) {
     if (!String(body[field] ?? "").trim()) {
       return new Response(JSON.stringify({ ok: false, error: `Missing ${field}` }), { status: 400 });
@@ -22,15 +22,20 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ ok: false, error: "Invalid email" }), { status: 400 });
   }
 
-  const webhookUrl = import.meta.env.SHEET_WEBHOOK_URL;
-  const secret = import.meta.env.SHEET_WEBHOOK_SECRET;
+  const webhookUrl = (env as any).SHEET_WEBHOOK_URL;
+  const secret = (env as any).SHEET_WEBHOOK_SECRET;
+
+  if (!webhookUrl || !secret) {
+    console.error("Missing SHEET_WEBHOOK_URL or SHEET_WEBHOOK_SECRET at runtime");
+    return new Response(JSON.stringify({ ok: false, error: "Server misconfigured" }), { status: 500 });
+  }
 
   try {
     const res = await fetch(webhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...body, secret }),
-      redirect: "follow", // Apps Script often 302s once before returning JSON
+      redirect: "follow",
     });
 
     if (!res.ok) throw new Error(`Sheet webhook failed: ${res.status}`);
