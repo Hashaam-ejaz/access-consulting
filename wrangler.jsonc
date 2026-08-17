@@ -10,5 +10,10 @@
 	},
 	"observability": {
 		"enabled": true
+	},
+	"vars" :
+	{
+		"SHEET_WEBHOOK_URL" : "https://script.google.com/macros/s/AKfycbzsLpP6akAO3YvAOwZyINUQT0VcCYSrczr5wqhQFVDpgjKK_ZoAugv-9aitJeMHNdhbmA/exec"
 	}
+
 }

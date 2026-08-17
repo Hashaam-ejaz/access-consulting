@@ -145,16 +145,23 @@ const roadmaps = [
         <Heading class="text-center md:text-4xl lg:text-5xl">
             The Access Methodology: Personalised Consultation.
         </Heading>
-        <p class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl">
+        <p
+            class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl pb-12">
             We turn a confusing, high-stakes process into clear, manageable
-            steps — with a team that has personally navigated every stage you're
-            about to face.
+            steps.
         </p>
+        <!-- <Heading class="text-center md:text-4xl lg:text-5xl"
+            >A Message From Our Founder
+        </Heading> -->
+        <VideoEmbed
+            fileId="1_fUSsYlWi7TPmy-zvO6QvHLtfqllfKID"
+            poster="/team/harris.png"
+            title="Harris Azhar, founder of Access Consulting, introduces the methodology and services"
+        />
         <div class="mt-8 flex justify-center">
             <Button href="#evaluate">Start your free evaluation</Button>
         </div>
     </Section>
-
     <!-- founder video placeholder -->
     <Section class="bg-white">
         <!-- <div class="mx-auto max-w-2xl text-center">
@@ -175,6 +182,7 @@ const roadmaps = [
         <div class="mt-14 flex w-full flex-col gap-16">
             {journey.map((m) => <JourneyMilestone {...m} />)}
         </div> -->
+        <span class="text-3xl font-bold">The Founders Journey</span>
         <div class="mt-14">
             <JourneyTimeline journey={journey} />
         </div>
@@ -216,17 +224,6 @@ const roadmaps = [
                 ))
             }
         </div>
-    </Section>
-
-    <Section class="bg-sky-soft">
-        <Heading class="text-center md:text-4xl lg:text-5xl"
-            >A Message From Our Founder
-        </Heading>
-        <VideoEmbed
-            fileId="1_fUSsYlWi7TPmy-zvO6QvHLtfqllfKID"
-            poster="/team/harris.png"
-            title="Harris Azhar, founder of Access Consulting, introduces the methodology and services"
-        />
     </Section>
 
     <!-- FORM SECTION — island goes here next -->

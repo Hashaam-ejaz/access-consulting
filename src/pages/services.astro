@@ -65,16 +65,7 @@ const countryPackages = [
     },
 ]
 
-// const specialistPackages = [
-//     {
-//         title: "Scholarship Package",
-//         price: "€300",
-//         includes: [
-//             "Fulbright / Chevening / DAAD-track LoM review and guidance",
-//             "Delivered by Fulbright & Chevening scholarship holders",
-//         ],
-//         ctaHref: wa("Hi, I'm interested in the Scholarship Package."),
-//     },
+// const PhDPackages = [
 //     {
 //         title: "PhD & Research Proposal",
 //         price: "€150",
@@ -86,14 +77,33 @@ const countryPackages = [
 //     },
 // ]
 
-const scholarshipTiers = [
+// const scholarshipTiers = [
+//     {
+//         title: "CGPA 3.7 and above",
+//         price: "€300",
+//     },
+//     {
+//         title: "CGPA below 3.7",
+//         price: "€400",
+//     },
+// ]
+
+const scholarshipTier = {
+    title: "Scholarship Guidance Package",
+    upfront: "€300",
+    success: "€300",
+    note: "€300 upfront + €300 upon successful scholarship award.",
+}
+
+const PhDPackages = [
     {
-        title: "CGPA 3.7 and above",
-        price: "€300",
-    },
-    {
-        title: "CGPA below 3.7",
-        price: "€400",
+        title: "PhD & Research Proposal",
+        price: "€450",
+        includes: [
+            "Rigorous, supervisor-aligned research proposal",
+            "Delivered by our PhD specialist advisor",
+        ],
+        ctaHref: wa("Hi, I'm interested in PhD & Research Proposal support."),
     },
 ]
 
@@ -182,11 +192,42 @@ const individualServices = {
                 ))
             }
         </div>
+
+        <!-- scholarship add-on pricing -->
+        <div class="mx-auto mt-12 w-full max-w-2xl">
+            <h3
+                class="text-center text-sm font-semibold uppercase tracking-widest text-primary">
+                Scholarship Package Add-on
+            </h3>
+            <p class="mx-auto mt-2 max-w-md text-center text-sm text-ink/60">
+                Available across all tiers.
+            </p>
+            <div class="mt-6 flex justify-center">
+                <div
+                    class="w-full rounded-2xl border border-ink/10 bg-sky-soft/40 p-6 text-center">
+                    <div class="text-3xl font-semibold text-ink">
+                        {scholarshipTier.upfront}
+                        <span class="text-lg font-normal text-ink/60">
+                            + {scholarshipTier.success}
+                        </span>
+                    </div>
+                    <div class="mt-1 text-sm font-medium text-ink/80">
+                        {scholarshipTier.title}
+                    </div>
+                    <p class="mt-2 text-xs text-ink/50">
+                        {scholarshipTier.note}
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <p class="mx-auto mt-8 max-w-2xl text-center text-sm text-ink/50">
             For other European countries the university count may vary, but
             pricing stays the same. Multi-country applications available on
             request; pricing may vary case by case.
         </p>
+
+        <!-- PhD & Research packages -->
     </Section>
 
     <!-- Other countries -->
@@ -209,60 +250,24 @@ const individualServices = {
         </div>
     </Section>
 
+    <!-- PhD & Research packages -->
     <Section class="bg-white">
         <span
             class="text-sm font-medium uppercase tracking-widest text-primary">
-            Complete Packages
+            Doctoral Track
         </span>
         <Heading class="mt-3 text-center md:text-4xl lg:text-5xl"
-            >Study in Europe</Heading
+            >PhD & Research Support</Heading
         >
         <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">
-            Priced by academic profile. Each package covers an upfront fee plus
-            a success fee, due only once your first admission comes through.
-            Every package is valid for two intakes.
+            Specialised guidance and proposal development for doctoral
+            applications.
         </p>
-        <div class="mt-10 grid w-full gap-6 lg:grid-cols-3 lg:items-stretch">
-            {
-                europeTiers.map((t) => (
-                    <PricingCard
-                        {...t}
-                        ctaHref="/consulting?intent=study-abroad#evaluate"
-                    />
-                ))
-            }
-        </div>
-
-        <!-- scholarship add-on pricing -->
-        <div class="mx-auto mt-12 w-full max-w-2xl">
-            <h3
-                class="text-center text-sm font-semibold uppercase tracking-widest text-primary">
-                Scholarship Package Add-on
-            </h3>
-            <p class="mx-auto mt-2 max-w-md text-center text-sm text-ink/60">
-                Available across all tiers, priced by academic profile.
-            </p>
-            <div class="mt-6 grid gap-4 sm:grid-cols-2">
-                {
-                    scholarshipTiers.map((s) => (
-                        <div class="rounded-2xl border border-ink/10 bg-sky-soft/40 p-6 text-center">
-                            <div class="text-3xl font-semibold text-ink">
-                                {s.price}
-                            </div>
-                            <div class="mt-1 text-sm text-ink/60">
-                                {s.title}
-                            </div>
-                        </div>
-                    ))
-                }
+        <div class="mt-10 flex w-full justify-center">
+            <div class="w-full max-w-md">
+                {PhDPackages.map((p) => <PricingCard {...p} />)}
             </div>
         </div>
-
-        <p class="mx-auto mt-8 max-w-2xl text-center text-sm text-ink/50">
-            For other European countries the university count may vary, but
-            pricing stays the same. Multi-country applications available on
-            request; pricing may vary case by case.
-        </p>
     </Section>
 
     <!-- Career packages -->
