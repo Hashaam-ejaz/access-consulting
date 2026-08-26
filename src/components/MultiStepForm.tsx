@@ -1,47 +1,209 @@
 // src/components/MultiStepForm.tsx
 import { useState, useEffect } from "preact/hooks";
-import SearchableSelect from "./SearchableSelect";
-import { COUNTRIES } from "../data/countries";
-
-const INTENTS = [
-  { value: "study-abroad", label: "Study Abroad (Bachelor's / Master's)" },
-  { value: "chancenkarte", label: "Skilled Worker / Opportunity Card" },
-  { value: "ausbildung", label: "Ausbildung (Vocational Training)" },
-  { value: "phd", label: "PhD" },
-  { value: "careers", label: "Career Mapping & Job Strategy" },
-  { value: "consultation", label: "General Consultation" },
-];
-const DEGREE_STATUS = ["In progress", "Completed", "Not yet started"];
-const APP_STAGE = ["Exploring / Researching", "Preparing documents", "Ready to apply"];
-const GERMAN_LEVEL = ["N/A", "A1", "A2", "B1", "B2", "C1+"];
 
 const WHATSAPP = "4915772312591";
 const EMAIL = "Info@TheAccessConsulting.com"; // [CLIENT TO CONFIRM]
 
 type FormData = {
-  name: string; email: string; phone: string;
-  country1: string; country2: string; country3: string;
-  intake: string; intent: string; careerAddon: string; studyField: string; appStage: string;
-  degreeStatus: string; cgpa: string; university: string; major: string; location: string;
-  englishTest: string; euroLanguage: string;
-  anythingElse: string; newsletter: boolean;
+  // Section 1: Your Plans
+  level: string;
+  countries: string[];
+  studyField: string;
+  studyFieldDetail: string;
+  startTimeline: string;
+  postDegreePlan: string;
+  priorities: string[];
+  // Section 2: Your Background
+  qualification: string;
+  qualificationStatus: string;
+  institutionGrades: string;
+  workExperience: string;
+  englishScore: string;
+  greGmatScore: string;
+  testStatus: string[];
+  researchOutput: string;
+  supervisorContact: string;
+  documentsLink: string;
+  linkedin: string;
+  // Section 3: Funding and Support
+  funding: string;
+  services: string[];
+  processStage: string;
+  // Section 4: Contact
+  name: string;
+  city: string;
+  phone: string;
+  email: string;
+  hearAbout: string;
 };
 
 const initial: FormData = {
-  name: "", email: "", phone: "",
-  country1: "", country2: "", country3: "",
-  intake: "", intent: "", careerAddon: "", studyField: "", appStage: "",
-  degreeStatus: "", cgpa: "", university: "", major: "", location: "",
-  englishTest: "", euroLanguage: "",
-  anythingElse: "", newsletter: false,
+  level: "", countries: [], studyField: "", studyFieldDetail: "",
+  startTimeline: "", postDegreePlan: "", priorities: [],
+  qualification: "", qualificationStatus: "", institutionGrades: "", workExperience: "",
+  englishScore: "", greGmatScore: "", testStatus: [],
+  researchOutput: "", supervisorContact: "", documentsLink: "", linkedin: "",
+  funding: "", services: [], processStage: "",
+  name: "", city: "", phone: "", email: "", hearAbout: "",
 };
 
-const steps = [
-  { section: "About You", title: "Your details", fields: ["name", "email", "phone"] },
-  { section: "Your Goals", title: "Where you're headed", fields: ["country1", "country2", "country3", "intake", "intent", "careerAddon", "studyField", "appStage"] },
-  { section: "Your Profile", title: "Academic profile", fields: ["degreeStatus", "cgpa", "university", "major", "location"] },
-  { section: "Your Profile", title: "Language proficiency", fields: ["englishTest", "euroLanguage"] },
-  { section: "Almost done", title: "Anything else?", fields: ["anythingElse", "newsletter"] },
+type FieldConfig = {
+  label: string;
+  type: "text" | "tel" | "email" | "single" | "multi";
+  options?: string[];
+  optional?: boolean;
+  hint?: string;
+  placeholder?: string;
+  maxSelect?: number;
+  showIf?: (d: FormData) => boolean;
+};
+
+const POSTGRAD_LEVELS = ["Master's", "MPhil / Pre-doctoral", "PhD"];
+
+const FIELDS: Record<keyof FormData, FieldConfig> = {
+  // ---- Section 1: Your Plans ----
+  level: {
+    label: "1. Which level are you applying for?",
+    type: "single",
+    options: ["Bachelor's", "Master's", "MPhil / Pre-doctoral", "PhD", "Not sure — need advice"],
+  },
+  countries: {
+    label: "2. Which countries are you considering?",
+    hint: "Select all that apply",
+    type: "multi",
+    options: ["UK", "Australia", "Canada", "USA", "Germany", "Italy / Other EU", "China", "Malaysia / Turkey", "Other", "Open to advice"],
+  },
+  studyField: {
+    label: "3. What field do you want to study?",
+    type: "single",
+    options: ["Engineering / Computer Science", "Business / Finance / Accounting", "Medicine / Health Sciences", "Social Sciences / Law / Humanities", "Natural Sciences / Mathematics", "Other or not decided"],
+  },
+  studyFieldDetail: {
+    label: "Specify programme or research area if known",
+    type: "text",
+    optional: true,
+    placeholder: "e.g. MS Data Science, Renewable Energy research",
+  },
+  startTimeline: {
+    label: "4. When do you want to start?",
+    type: "single",
+    options: ["Next intake (within 6 months)", "Within 12 months", "In 1-2 years", "Not decided yet"],
+  },
+  postDegreePlan: {
+    label: "5. After completing your degree, what is your primary plan?",
+    type: "single",
+    options: ["Return to Pakistan", "Work or settle abroad", "Open to advice / Not decided yet"],
+  },
+  priorities: {
+    label: "6. What matters most to you?",
+    hint: "Select your top 2 priorities",
+    type: "multi",
+    maxSelect: 2,
+    options: ["Scholarship or funding support", "University reputation and ranking", "Post-study work and PR opportunities", "Ease of admission with my profile", "Proximity to family or specific department/supervisor"],
+  },
+  // ---- Section 2: Your Background ----
+  qualification: {
+    label: "7. Highest qualification held or in progress",
+    type: "single",
+    options: ["Matric / O-Levels", "FSc / FA / ICS", "A-Levels", "Bachelor's", "Master's / MPhil", "Other"],
+  },
+  qualificationStatus: {
+    label: "Status",
+    type: "single",
+    options: ["Completed", "In progress"],
+  },
+  institutionGrades: {
+    label: "8. Institution and CGPA/Marks achieved",
+    type: "text",
+    placeholder: 'e.g. "BS Economics, LUMS – 3.4/4.0"',
+  },
+  workExperience: {
+    label: "9. Full-time work experience (excluding internships)",
+    type: "single",
+    options: ["None", "Under 1 year", "1-3 years", "3-5 years", "Over 5 years"],
+  },
+  englishScore: {
+    label: "10. Language proficiency / standardized test scores",
+    hint: "Note scores if available",
+    type: "text",
+    optional: true,
+    placeholder: "IELTS / PTE / TOEFL — e.g. IELTS 7.0",
+  },
+  greGmatScore: {
+    label: "GRE / GMAT (if taken)",
+    type: "text",
+    optional: true,
+    placeholder: "e.g. GRE 320",
+  },
+  testStatus: {
+    label: "If you haven't taken a test yet",
+    type: "multi",
+    optional: true,
+    options: ["Booked / Planning to take", "Seeking no-test pathway"],
+  },
+  researchOutput: {
+    label: "11. Research / publication output",
+    hint: "For Master's / PhD applicants",
+    type: "single",
+    options: ["None yet", "Thesis completed", "Conference papers", "Journal publications", "Reports / grey literature"],
+    showIf: (d) => POSTGRAD_LEVELS.includes(d.level),
+  },
+  supervisorContact: {
+    label: "12. Have you contacted a potential supervisor / department?",
+    hint: "For PhD applicants",
+    type: "single",
+    options: ["No, not yet", "Emailed, awaiting reply", "In discussion", "Acceptance received"],
+    showIf: (d) => d.level === "PhD",
+  },
+  documentsLink: {
+    label: "13. CV, transcript, or research proposal",
+    hint: "Share a link (Google Drive, Dropbox, etc.) — optional at this stage",
+    type: "text",
+    optional: true,
+    placeholder: "https://…",
+  },
+  linkedin: {
+    label: "14. LinkedIn profile (optional)",
+    type: "text",
+    optional: true,
+    placeholder: "https://linkedin.com/in/…",
+  },
+  // ---- Section 3: Funding and Support ----
+  funding: {
+    label: "15. Financial approach for tuition and living costs",
+    type: "single",
+    options: ["Self-funded / Family-supported", "Need partial scholarship / budget-friendly options", "Need 100% full funding / scholarship to proceed"],
+  },
+  services: {
+    label: "16. Which services do you need?",
+    hint: "Select all that apply",
+    type: "multi",
+    options: ["University shortlisting", "Applications", "SOP / Essays", "Research / Supervisor outreach", "Test prep", "Visa / Interview prep", "Accommodation"],
+  },
+  processStage: {
+    label: "17. Where are you in the process?",
+    type: "single",
+    options: ["Just starting", "Researching", "Applications in progress", "Have offer / Need visa help", "Previously applied"],
+  },
+  // ---- Section 4: Contact ----
+  name: { label: "18. Full name", type: "text" },
+  city: { label: "19. City", type: "text" },
+  phone: { label: "20. WhatsApp number", type: "tel", placeholder: "+92 3xx xxxxxxx" },
+  email: { label: "21. Email address", type: "email" },
+  hearAbout: {
+    label: "22. How did you hear about us?",
+    type: "single",
+    options: ["Social Media (FB / Insta / LinkedIn)", "Referral", "Google search", "Campus visit", "Word of mouth"],
+  },
+};
+
+const steps: { section: string; title: string; fields: (keyof FormData)[] }[] = [
+  { section: "Section 1 · Your Plans", title: "What do you want to study?", fields: ["level", "countries", "studyField", "studyFieldDetail"] },
+  { section: "Section 1 · Your Plans", title: "Timeline & priorities", fields: ["startTimeline", "postDegreePlan", "priorities"] },
+  { section: "Section 2 · Your Background", title: "Education & experience", fields: ["qualification", "qualificationStatus", "institutionGrades", "workExperience"] },
+  { section: "Section 2 · Your Background", title: "Tests, research & documents", fields: ["englishScore", "greGmatScore", "testStatus", "researchOutput", "supervisorContact", "documentsLink", "linkedin"] },
+  { section: "Section 3 · Funding & Support", title: "Funding and services", fields: ["funding", "services", "processStage"] },
+  { section: "Section 4 · Contact", title: "How can we reach you?", fields: ["name", "city", "phone", "email", "hearAbout"] },
 ];
 
 export default function MultiStepForm() {
@@ -49,17 +211,16 @@ export default function MultiStepForm() {
   const [data, setData] = useState<FormData>(initial);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [intent, setIntent] = useState("");
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const intent = params.get("intent");
-    if (intent) {
-      const match = INTENTS.find((i) => i.value === intent);
-      if (match) setData((d) => ({ ...d, intent: match.label }));
-    }
+    const param = new URLSearchParams(window.location.search).get("intent");
+    if (!param) return;
+    setIntent(param);
+    if (param === "phd") setData((d) => ({ ...d, level: "PhD" }));
   }, []);
 
-  const set = (field: keyof FormData, value: string | boolean) => {
+  const set = (field: keyof FormData, value: string | string[]) => {
     setData((d) => ({ ...d, [field]: value }));
     setErrors((e) => {
       if (!e[field]) return e;
@@ -68,19 +229,26 @@ export default function MultiStepForm() {
     });
   };
 
-  // whether the career add-on question should show
-  const showCareerAddon = data.intent === "Study Abroad (Bachelor's / Master's)" || data.intent === "PhD";
+  const visibleFields = (s: number) =>
+    steps[s].fields.filter((f) => {
+      const cfg = FIELDS[f];
+      return !cfg.showIf || cfg.showIf(data);
+    });
 
   const validateStep = () => {
-    const optional = ["country2", "country3", "studyField", "careerAddon", "euroLanguage", "anythingElse", "newsletter", "ielts"];
     const e: Record<string, string> = {};
-    for (const f of steps[step].fields) {
-      if (optional.includes(f)) continue;
-      const val = String(data[f as keyof FormData] ?? "").trim();
-      if (!val) e[f] = "Required";
-      if (f === "email" && val && !/^[^@]+@[^@]+\.[^@]+$/.test(val)) e[f] = "Enter a valid email";
-      if (f === "phone" && val && !/^\+?[0-9\s\-().]{7,20}$/.test(val)) e[f] = "Enter a valid phone number";
-      if (f === "cgpa" && val && (isNaN(+val) || +val < 0 || +val > 4)) e[f] = "Enter a CGPA between 0 and 4";
+    for (const f of visibleFields(step)) {
+      const cfg = FIELDS[f];
+      if (cfg.optional) continue;
+      const val = data[f];
+      if (Array.isArray(val)) {
+        if (val.length === 0) e[f] = "Select at least one option";
+        continue;
+      }
+      const trimmed = String(val ?? "").trim();
+      if (!trimmed) { e[f] = "Required"; continue; }
+      if (f === "email" && !/^[^@]+@[^@]+\.[^@]+$/.test(trimmed)) e[f] = "Enter a valid email";
+      if (f === "phone" && !/^\+?[0-9\s\-().]{7,20}$/.test(trimmed)) e[f] = "Enter a valid phone number";
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -92,11 +260,17 @@ export default function MultiStepForm() {
   const submit = async () => {
     if (!validateStep()) return;
     setStatus("sending");
+    // flatten arrays so each column lands as readable text in the sheet
+    const payload: Record<string, string> = { intent };
+    for (const [k, v] of Object.entries(data)) {
+      payload[k] = Array.isArray(v) ? v.join("; ") : v;
+    }
     try {
       const res = await fetch("/api/lead", {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data),
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error();
+      (window as any).fbq?.("track", "Lead");
       setStatus("done");
     } catch { setStatus("error"); }
   };
@@ -111,11 +285,11 @@ export default function MultiStepForm() {
         <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-2xl text-green-600">✓</div>
         <h3 class="mt-5 text-xl font-semibold text-ink">Thank you, {data.name.split(" ")[0]}!</h3>
         <p class="mx-auto mt-2 max-w-md text-ink/70">
-          Your profile has been received. We'll be in touch within 1–2 working days.
+          Your applicant profile has been received. We'll be in touch within 1–2 working days.
           In a hurry? Reach us directly right now:
         </p>
         <div class="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-          <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hi, I just submitted the form (${data.name}).`)}`}
+          <a href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(`Hi, I just submitted the applicant profile form (${data.name}).`)}`}
              target="_blank" rel="noopener noreferrer"
              class="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-medium text-white transition-transform hover:scale-95">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.6-3-1.3-5-4.4-5.2-4.6-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.3c-.2.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l.9-1c.2-.2.4-.2.6-.1l1.9 1c.3.1.4.2.5.3.1.2.1.8-.1 1.5z"/></svg>
@@ -144,20 +318,16 @@ export default function MultiStepForm() {
 
       <h3 class="text-xl font-semibold text-ink">{steps[step].title}</h3>
 
-      <div class="mt-6 space-y-5">
-        {steps[step].fields.map((field) => {
-          // conditionally hide the career add-on unless intent qualifies
-          if (field === "careerAddon" && !showCareerAddon) return null;
-          return (
-            <Field
-              key={field}
-              name={field}
-              data={data}
-              error={errors[field]}
-              onChange={(v) => set(field as keyof FormData, v)}
-            />
-          );
-        })}
+      <div class="mt-6 space-y-6">
+        {visibleFields(step).map((field) => (
+          <Field
+            key={field}
+            name={field}
+            data={data}
+            error={errors[field]}
+            onChange={(v) => set(field, v)}
+          />
+        ))}
       </div>
 
       {status === "error" && (
@@ -183,71 +353,73 @@ export default function MultiStepForm() {
 
 // ---- FIELD RENDERER ----
 function Field({ name, data, error, onChange }: {
-  name: string; data: FormData; error?: string; onChange: (v: string | boolean) => void;
+  name: keyof FormData; data: FormData; error?: string; onChange: (v: string | string[]) => void;
 }) {
-  const value = data[name as keyof FormData];
-  const labels: Record<string, string> = {
-    name: "Full name", email: "Email address", phone: "Phone / WhatsApp number",
-    country1: "Target country", country2: "Second target country (optional)", country3: "Third target country (optional)",
-    intake: "Target intake (e.g. Winter 2027)", intent: "What are you applying for?",
-    careerAddon: "Also interested in our Career Mapping & Job Strategy package?",
-    studyField: "Field / domain you're aiming to study", appStage: "Where are you in the process?",
-    degreeStatus: "Current degree status", cgpa: "Current CGPA (out of 4)", university: "University",
-    major: "Majoring in", location: "Current city of residence",
-    englishTest: "English test (IELTS / TOEFL / other — score if taken)",
-    euroLanguage: "European language certificate (or N/A)",
-    anythingElse: "Anything else you'd like to share with our team? (optional)",
-    newsletter: "",
-  };
-
-  const selectMap: Record<string, { options: string[]; searchable?: boolean }> = {
-    country1: { options: COUNTRIES, searchable: true },
-    country2: { options: COUNTRIES, searchable: true },
-    country3: { options: COUNTRIES, searchable: true },
-    intent: { options: INTENTS.map((i) => i.label) },
-    appStage: { options: APP_STAGE },
-    degreeStatus: { options: DEGREE_STATUS },
-    careerAddon: { options: ["Yes, tell me more", "No thanks"] },
-  };
+  const cfg = FIELDS[name];
+  const value = data[name];
 
   const base = "w-full rounded-xl border bg-white px-4 py-3 text-ink outline-none transition-colors focus:border-primary";
   const border = error ? "border-red-400" : "border-ink/15";
 
-  // newsletter checkbox
-  if (name === "newsletter") {
+  if (cfg.type === "single" || cfg.type === "multi") {
+    const selected = cfg.type === "multi" ? (value as string[]) : [value as string];
+    const toggle = (opt: string) => {
+      if (cfg.type === "single") {
+        onChange(opt === value ? "" : opt);
+        return;
+      }
+      const list = value as string[];
+      if (list.includes(opt)) {
+        onChange(list.filter((o) => o !== opt));
+      } else if (!cfg.maxSelect || list.length < cfg.maxSelect) {
+        onChange([...list, opt]);
+      }
+    };
+
     return (
-      <label class="flex cursor-pointer items-start gap-3">
-        <input type="checkbox" checked={value as boolean}
-          onChange={(e) => onChange((e.target as HTMLInputElement).checked)}
-          class="mt-0.5 h-5 w-5 rounded border-ink/30 text-primary focus:ring-primary" />
-        <span class="text-sm text-ink/70">Keep me updated with visa news, deadlines, and tips (newsletter).</span>
-      </label>
+      <div>
+        <FieldLabel cfg={cfg} count={cfg.maxSelect ? `${(value as string[]).length}/${cfg.maxSelect}` : undefined} />
+        <div class="flex flex-wrap gap-2">
+          {cfg.options!.map((opt) => {
+            const active = selected.includes(opt);
+            return (
+              <button type="button" key={opt} onClick={() => toggle(opt)} aria-pressed={active}
+                class={`rounded-full border px-4 py-2 text-sm transition-colors ${
+                  active
+                    ? "border-primary bg-primary/5 font-medium text-primary"
+                    : `${error ? "border-red-300" : "border-ink/15"} text-ink/70 hover:border-ink/40`
+                }`}>
+                {opt}
+              </button>
+            );
+          })}
+        </div>
+        {error && <span class="mt-1.5 block text-xs text-red-500">{error}</span>}
+      </div>
     );
   }
 
-  const selectCfg = selectMap[name];
-
   return (
     <label class="block">
-      <span class="mb-1.5 block text-sm font-medium text-ink/80">{labels[name]}</span>
-      {selectCfg ? (
-        <SearchableSelect
-          options={selectCfg.options}
-          searchable={selectCfg.searchable}
-          value={value as string}
-          onChange={onChange}
-          error={!!error}
-        />
-      ) : name === "anythingElse" ? (
-        <textarea class={`${base} ${border} min-h-24 resize-y`} value={value as string}
-          onInput={(e) => onChange((e.target as HTMLTextAreaElement).value)} />
-      ) : (
-        <input class={`${base} ${border}`}
-          type={name === "email" ? "email" : name === "phone" ? "tel" : "text"}
-          value={value as string}
-          onInput={(e) => onChange((e.target as HTMLInputElement).value)} />
-      )}
+      <FieldLabel cfg={cfg} />
+      <input class={`${base} ${border}`}
+        type={cfg.type}
+        value={value as string}
+        placeholder={cfg.placeholder}
+        onInput={(e) => onChange((e.target as HTMLInputElement).value)} />
       {error && <span class="mt-1 block text-xs text-red-500">{error}</span>}
     </label>
+  );
+}
+
+function FieldLabel({ cfg, count }: { cfg: FieldConfig; count?: string }) {
+  return (
+    <span class="mb-2 block">
+      <span class="block text-sm font-medium text-ink/80">
+        {cfg.label}
+        {count && <span class="ml-2 text-xs font-normal text-ink/50">{count} selected</span>}
+      </span>
+      {cfg.hint && <span class="mt-0.5 block text-xs text-ink/50">{cfg.hint}</span>}
+    </span>
   );
 }

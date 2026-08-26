@@ -230,9 +230,16 @@ const roadmaps = [
     <Section id="evaluate" class="bg-white">
         <div class="mt-10 w-full max-w-2xl">
             <Heading class="text-center md:text-2xl lg:text-3xl"
-                >Get your free profile evaluation</Heading
+                >Applicant Profile Form</Heading
             >
-            <MultiStepForm client:only="preact" />
+            <p class="mx-auto mt-4 max-w-xl text-center text-ink/70">
+                Please complete this form to help us understand your study
+                goals. This helps us provide you with the most relevant advice
+                for your path ahead.
+            </p>
+            <div class="mt-8">
+                <MultiStepForm client:only="preact" />
+            </div>
         </div>
     </Section>
 
