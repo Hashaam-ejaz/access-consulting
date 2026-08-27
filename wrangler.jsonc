@@ -13,7 +13,7 @@
 	},
 	"vars" :
 	{
-		"SHEET_WEBHOOK_URL" : "https://script.google.com/macros/s/AKfycbzsLpP6akAO3YvAOwZyINUQT0VcCYSrczr5wqhQFVDpgjKK_ZoAugv-9aitJeMHNdhbmA/exec"
+		"SHEET_WEBHOOK_URL" : "https://script.google.com/macros/s/AKfycbxxeJU7g1mAPsefV1zk-9CuXbxzI2qnRrCiHJ74tZPe1LbNgz6QYkHMsPtijSSAeR5hvg/exec"
 	}
 
 }
