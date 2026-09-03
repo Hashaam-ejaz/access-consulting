@@ -6,6 +6,9 @@ import Heading from "../components/Heading.astro"
 import Button from "../components/Button.astro"
 import TeamCard from "../components/TeamCard.astro"
 import LogoGrid from "../components/LogoGrid.astro"
+import VideoEmbed from "../components/VideoEmbed.astro"
+import JourneyTimeline from "../components/JourneyTimeline.astro"
+import MultiStepForm from "../components/MultiStepForm"
 
 const values = [
     {
@@ -77,7 +80,7 @@ const team = [
     },
     {
         name: "Azfar Waseem",
-        role: "Operations Partner — Islamabad",
+        role: "Operations Advisor — Islamabad",
         image: "/team/azfar.png",
         linkedin: "https://www.linkedin.com/in/azfarwasim/",
     },
@@ -88,16 +91,58 @@ const team = [
         linkedin: "https://www.linkedin.com/in/shifa-danish-884298282/",
     },
     {
+        name: "Amal Hussain",
+        role: "Associate, Research and Operations",
+        image: "/team/amal.png",
+        linkedin: "https://www.linkedin.com/in/amalhussainsyed/",
+    },
+    {
         name: "Sabih Ahmad",
-        role: "Marketing Manager",
+        role: "Content Strategist and Editor",
         image: "/team/sabih.png",
-        // linkedin: "https://www.linkedin.com/in/sabihahmad/",
+        linkedin: "https://www.linkedin.com/in/sabih-ahmad-51726329a",
     },
 ]
 
 const partnerLogos = [
     { name: "Global Hub Cadet College Malir", src: "/logos/ccmk.png" },
     { name: "Cadet College Jhang", src: "/logos/ccj.png" },
+]
+
+const journey = [
+    {
+        startYear: 2006,
+        endYear: 2009,
+        title: "Bahria School",
+        desc: "Nine straight A's and a semi-government scholarship — the start of the path.",
+        image: "/journey/school.jpg",
+    },
+    {
+        startYear: 2011,
+        title: "Headstart — full scholarship",
+        desc: "Graduated A Levels with four straight A's on a 100% merit scholarship.",
+        image: "/journey/a-levels.jpg",
+    },
+    {
+        startYear: 2011,
+        endYear: 2015,
+        title: "LUMS",
+        desc: "Completed his degree at one of Pakistan's leading universities, supported by financial aid.",
+        image: "/journey/lums.jpg",
+    },
+    {
+        startYear: 2018,
+        endYear: 2021,
+        title: "Master's in Germany - HTW Berlin",
+        desc: "Thesis on coal economy and renewables, with DIW Berlin (German Institute for Economic Research).",
+        image: "/journey/un.jpg",
+    },
+    {
+        startYear: 2021,
+        title: "Into European industry",
+        desc: "Roles across German finance and tech — the full arc completed.",
+        image: "/journey/wermuth.jpg",
+    },
 ]
 ---
 
@@ -186,7 +231,49 @@ const partnerLogos = [
         </div>
     </Section>
 
-    <!-- team -->
+    <Section class="bg-linear-to-b from-[#ece7ff] to-white">
+        <Heading class="text-center md:text-4xl lg:text-5xl">
+            The Access Methodology: Personalised Consultation.
+        </Heading>
+        <p
+            class="mx-auto max-w-3xl text-center text-lg text-ink/70 md:text-xl pb-12">
+            We turn a confusing, high-stakes process into clear, manageable
+            steps.
+        </p>
+        <!-- <Heading class="text-center md:text-4xl lg:text-5xl"
+            >A Message From Our Founder
+        </Heading> -->
+        <VideoEmbed
+            fileId="1_fUSsYlWi7TPmy-zvO6QvHLtfqllfKID"
+            poster="/team/harris.png"
+            title="Harris Azhar, founder of Access Consulting, introduces the methodology and services"
+        />
+        <div class="mt-8 flex justify-center">
+            <Button href="#evaluate">Start your free evaluation</Button>
+        </div>
+    </Section>
+    <!-- founder's journey -->
+    <Section class="bg-white">
+        <div class="mx-auto max-w-2xl text-center">
+            <span
+                class="text-sm font-medium uppercase tracking-widest text-primary">
+                The founder's journey
+            </span>
+            <Heading class="mt-3 text-center md:text-3xl lg:text-4xl"
+                >From Pakistani applicant to European professional.</Heading
+            >
+            <p class="mt-4 text-ink/70">
+                Access Consulting isn't built on theory. Our founder, Harris
+                Azhar, walked the exact path you're on — every scholarship,
+                every visa, every hard decision. Here's the journey.
+            </p>
+        </div>
+
+        <div class="mt-14 w-full">
+            <JourneyTimeline journey={journey} />
+        </div>
+    </Section>
+
     <!-- team -->
     <Section class="bg-white">
         <Heading class="text-center md:text-4xl lg:text-5xl"
@@ -217,6 +304,22 @@ const partnerLogos = [
             }
         </div>
     </Section>
+
+    <Section id="evaluate" class="bg-white">
+        <div class="mt-10 w-full max-w-2xl">
+            <Heading class="text-center md:text-2xl lg:text-3xl"
+                >Applicant Profile Form</Heading
+            >
+            <p class="mx-auto mt-4 max-w-xl text-center text-ink/70">
+                Please complete this form to help us understand your study
+                goals. This helps us provide you with the most relevant advice
+                for your path ahead.
+            </p>
+            <div class="mt-8">
+                <MultiStepForm client:only="preact" />
+            </div>
+        </div>
+    </Section>
     <!-- partner organisations -->
     <Section class="bg-sky-soft">
         <Heading class="text-center md:text-4xl lg:text-5xl"
@@ -239,7 +342,7 @@ const partnerLogos = [
             </h2>
             <p class="mt-5 text-lg leading-relaxed text-white/70">
                 A dedicated percentage of all Access Consulting revenue directly
-                funds
+                funds &nbsp;
                 <a
                     href="https://hamaragharcenter.com/"
                     target="_blank"
@@ -262,7 +365,7 @@ const partnerLogos = [
                 Share your profile and we'll come back with the pathways that
                 fit you.
             </p>
-            <Button href="/consulting#evaluate" class="mt-8">Get started</Button
+            <Button href="#evaluate" class="mt-8">Get started</Button
             >
         </div>
     </Section>
